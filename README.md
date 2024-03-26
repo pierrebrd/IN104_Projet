@@ -1,5 +1,3 @@
-# IN104_Projet
-# IN104_Projet
-# IN104_Projet
+# Jeu Bobail - Julie Aubry et Pierre Bordeau
 
-# Capy slay
+# Capybara
