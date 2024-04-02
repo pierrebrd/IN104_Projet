@@ -42,7 +42,7 @@ int **initialisation()
             grille[i][j] = 0;
         }
     }
-    grille[3][3] = 3;
+    grille[2][2] = 3;
 
     return grille;
 }

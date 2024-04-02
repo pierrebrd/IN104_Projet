@@ -1,0 +1,6 @@
+#Fichier permettant de ne pas faire suivre par GIT certains types de fichiers
+
+*.x
+*.o
+*.out
+*.txt
