@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+enum DIRECTION = {NORD, NORD-EST, EST, SUD-EST, SUD, SUD-OUEST, OUEST, NORD-OUEST} ;
+
 void afficher()
 {
     printf("┏━━━┳━━━┳━━━┳━━━┳━━━┓\n");
@@ -52,31 +54,10 @@ void afficher()
     printf("┃\n┗━━━┻━━━┻━━━┻━━━┻━━━┛\n");
 }
 
-int main()
-{
-    char *str = "❤️";
-    printf("%s\n", str);
-    printf("┏━━━┳━━━┳━━━┳━━━┳━━━┓\n");
-    for (int i = 0; i < 5; ++i)
-    {
-        printf("┃ ");
-        printf("\033[0;31m");
-        printf("\x1b[1m");
-        printf("● ");
-        printf("\033[0m");
-    }
-    printf("┃\n");
 
-    printf("Hello\n");
-    afficher();
-    return 0;
-}
 =======
-#include <stdio.h>
-#include <stdbool.h>
-#include <stdlib.h>
 
-enum DIRECTION = {NORD, NORD-EST, EST, SUD-EST, SUD, SUD-OUEST, OUEST, NORD-OUEST} ;
+
 
 int ** initialisation() {
     /*crée une matrice 5*5, la remplit et la renvoie
@@ -149,8 +130,6 @@ void coup(){
 
 
 int main() {
-    initialisation() ;
-    destruction() ;
-
+    return 0;
 }
 >>>>>>> e7f6c4f478a10d9dffe3fe6d0637116c030bbcfb
