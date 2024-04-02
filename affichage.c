@@ -32,35 +32,35 @@ void affichercase(int i, int j, int **grille)
 
 void afficher(int **grille)
 {
-    printf("\n    1   2   3   4   5\n  ┏━━━┳━━━┳━━━┳━━━┳━━━┓\nA ");
+    printf("\n          1   2   3   4   5\n        ┏━━━┯━━━┯━━━┯━━━┯━━━┓\n      A ┃ ");
     for (int j = 0; j < 5; ++j)
     {
-        printf("┃ ");
         affichercase(0, j, grille);
+        printf("│ ");
     }
-    printf("┃\n  ┣━━━╋━━━╋━━━╋━━━╋━━━┫\nB ");
+    printf("\b\b┃ \n        ┠───┼───┼───┼───┼───┨\n      B ┃ ");
     for (int j = 0; j < 5; ++j)
     {
-        printf("┃ ");
         affichercase(1, j, grille);
+        printf("│ ");
     }
-    printf("┃\n  ┣━━━╋━━━╋━━━╋━━━╋━━━┫\nC ");
+    printf("\b\b┃ \n        ┠───┼───┼───┼───┼───┨\n      C ┃ ");
     for (int j = 0; j < 5; ++j)
     {
-        printf("┃ ");
         affichercase(2, j, grille);
+        printf("│ ");
     }
-    printf("┃\n  ┣━━━╋━━━╋━━━╋━━━╋━━━┫\nD ");
+    printf("\b\b┃ \n        ┠───┼───┼───┼───┼───┨\n      D ┃ ");
     for (int j = 0; j < 5; ++j)
     {
-        printf("┃ ");
         affichercase(3, j, grille);
+        printf("│ ");
     }
-    printf("┃\n  ┣━━━╋━━━╋━━━╋━━━╋━━━┫\nE ");
+    printf("\b\b┃ \n        ┠───┼───┼───┼───┼───┨\n      E ┃ ");
     for (int j = 0; j < 5; ++j)
     {
-        printf("┃ ");
         affichercase(4, j, grille);
+        printf("│ ");
     }
-    printf("┃\n  ┗━━━┻━━━┻━━━┻━━━┻━━━┛\n");
+    printf("\b\b┃ \n        ┗━━━┷━━━┷━━━┷━━━┷━━━┛\n\n");
 }
