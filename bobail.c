@@ -1,7 +1,14 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+#include <stdlib.h>
+>>>>>>> 652fb04fed54c85f0deda5135ebd1f34845c6ece
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
+<<<<<<< HEAD
 enum DIRECTION = {NORD, NORD - EST, EST, SUD - EST, SUD, SUD - OUEST, OUEST, NORD - OUEST};
 
 int **initialisation()
@@ -57,6 +64,8 @@ void destruction(int **grille)
     }
     free(grille);
 }
+=======
+>>>>>>> 652fb04fed54c85f0deda5135ebd1f34845c6ece
 
 void affichercase(int i, int j, int **grille)
 {
@@ -131,13 +140,18 @@ int main()
     afficher(grille);
     return 0;
 }
+<<<<<<< HEAD
 
 void coup()
 {
+=======
+void coup(){
+>>>>>>> 652fb04fed54c85f0deda5135ebd1f34845c6ece
     /* Demande le coup, vérifie qu'il est légal, et met à jour la grille*/
 
     // Demande au joueur
 
+<<<<<<< HEAD
     printf("Emplacement du pion à déplacer (LettreChiffre sans espace): ");
     char *depart;
     scanf("%s", depart);
@@ -145,6 +159,15 @@ void coup()
     printf("Direction (Nord, Nord-Ouest...): ");
     char *dir_string;
     scanf("%s", dir_string);
+=======
+    printf("Emplacement du pion à déplacer (LettreChiffre sans espace): ") ;
+    //char* depart ;
+    //scanf("%s", depart) ;
+
+    printf("Direction (Nord, Nord-Ouest...): ") ;
+    //char* dir_string;
+    //scanf("%s", dir_string) ;
+>>>>>>> 652fb04fed54c85f0deda5135ebd1f34845c6ece
 
     // Vérifie que l'entrée est correcte, convertir dir_string en enum
     // A FAIRE, ca va etre un gros morceau :(
@@ -154,3 +177,12 @@ void coup()
     // déplacer dans cette direction
     // on peut définit suivant=i+1,j dans la dir sud, i-1,j+1 dans le dir nord-est...
 }
+<<<<<<< HEAD
+=======
+
+
+<<<<<<< HEAD
+int main() {
+    return 0 ;
+}
+>>>>>>> 652fb04fed54c85f0deda5135ebd1f34845c6ece
