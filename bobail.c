@@ -1,66 +1,8 @@
-<<<<<<< HEAD
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
-
-enum DIRECTION = {NORD, NORD-EST, EST, SUD-EST, SUD, SUD-OUEST, OUEST, NORD-OUEST} ;
-
-void afficher()
-{
-    printf("┏━━━┳━━━┳━━━┳━━━┳━━━┓\n");
-    for (int i = 0; i < 5; ++i)
-    {
-        printf("┃ ");
-        printf("\033[0;31m");
-        printf("\x1b[1m");
-        printf("● ");
-        printf("\033[0m");
-    }
-    printf("┃\n┣━━━╋━━━╋━━━╋━━━╋━━━┫\n");
-    for (int i = 0; i < 5; ++i)
-    {
-        printf("┃ ");
-        printf("\033[0;31m");
-        printf("\x1b[1m");
-        printf("● ");
-        printf("\033[0m");
-    }
-    printf("┃\n┣━━━╋━━━╋━━━╋━━━╋━━━┫\n");
-    for (int i = 0; i < 5; ++i)
-    {
-        printf("┃ ");
-        printf("\033[0;31m");
-        printf("\x1b[1m");
-        printf("● ");
-        printf("\033[0m");
-    }
-    printf("┃\n┣━━━╋━━━╋━━━╋━━━╋━━━┫\n");
-    for (int i = 0; i < 5; ++i)
-    {
-        printf("┃ ");
-        printf("\033[0;31m");
-        printf("\x1b[1m");
-        printf("● ");
-        printf("\033[0m");
-    }
-    printf("┃\n┣━━━╋━━━╋━━━╋━━━╋━━━┫\n");
-    for (int i = 0; i < 5; ++i)
-    {
-        printf("┃ ");
-        printf("\033[0;31m");
-        printf("\x1b[1m");
-        printf("● ");
-        printf("\033[0m");
-    }
-    printf("┃\n┗━━━┻━━━┻━━━┻━━━┻━━━┛\n");
-}
-
-
-=======
-
-
->>>>>>> 585b9e1d3ed2bdc347d01c939ccb420aeff02b09
+enum DIRECTION = {NORD, NORD - EST, EST, SUD - EST, SUD, SUD - OUEST, OUEST, NORD - OUEST};
 
 int **initialisation()
 {
@@ -116,13 +58,12 @@ void destruction(int **grille)
     free(grille);
 }
 
-<<<<<<< HEAD
 void affichercase(int i, int j, int **grille)
 {
     if (grille[i][j] == 1)
     {
         printf("\033[0;31m");
-        printf("● ");
+        printf("⭕ ");
         printf("\033[0m");
     }
     else if (grille[i][j] == 2)
@@ -190,29 +131,26 @@ int main()
     afficher(grille);
     return 0;
 }
-=======
-void coup(){
+
+void coup()
+{
     /* Demande le coup, vérifie qu'il est légal, et met à jour la grille*/
 
-    // Demande au joueur 
+    // Demande au joueur
 
-    printf("Emplacement du pion à déplacer (LettreChiffre sans espace): ") ;
-    char* depart ;
-    scanf("%s", depart) ;
+    printf("Emplacement du pion à déplacer (LettreChiffre sans espace): ");
+    char *depart;
+    scanf("%s", depart);
 
-    printf("Direction (Nord, Nord-Ouest...): ") ;
-    char* dir_string;
-    scanf("%s", dir_string) ;
+    printf("Direction (Nord, Nord-Ouest...): ");
+    char *dir_string;
+    scanf("%s", dir_string);
 
     // Vérifie que l'entrée est correcte, convertir dir_string en enum
     // A FAIRE, ca va etre un gros morceau :(
 
-    //Voir si on peut se déplacer dans cette direction
+    // Voir si on peut se déplacer dans cette direction
 
     // déplacer dans cette direction
     // on peut définit suivant=i+1,j dans la dir sud, i-1,j+1 dans le dir nord-est...
 }
-
-
->>>>>>> e7f6c4f478a10d9dffe3fe6d0637116c030bbcfb
->>>>>>> 585b9e1d3ed2bdc347d01c939ccb420aeff02b09
