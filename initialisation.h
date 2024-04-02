@@ -1,9 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-
-void afficher(int **grille);
-
-void affichercase(int i, int j, int **grille);
+#include <stdbool.h>
 
 int **initialisation();
 /*crée une matrice 5*5, la remplit et la renvoie
