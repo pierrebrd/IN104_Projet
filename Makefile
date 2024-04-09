@@ -9,6 +9,10 @@ all: main.x
 test_affichage.x: test_affichage.o initialisation.o affichage.o
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
+test_legit.x: test_legit.o legit.o initialisation.o affichage.o
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+
+
 %.x: %.o
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
