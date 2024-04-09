@@ -78,8 +78,8 @@ int legit(int **grille, int ia, int ja, int ib, int jb, int typepion)
         return 3; // direction inexistante
     }
 
-    printf("direction : %d\n", direction);
-    // on a maintenant la direction , vérifions que l'on ne rencontre pas d'obstacle
+    // printf("direction : %d\n", direction);
+    //  on a maintenant la direction , vérifions que l'on ne rencontre pas d'obstacle
     int ii = 0; // incrément sur i
     int jj = 0; // incrément sur j
 

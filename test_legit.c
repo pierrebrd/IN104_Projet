@@ -10,6 +10,6 @@ int main()
 {
     int **grille = initialisation();
     afficher(grille);
-    printf("%d\n", legit(grille, 2, 0, 1, 1, 1));
+    printf("%d\n", legit(grille, 2, 2, 0, 2, 3));
     return 0;
 }
