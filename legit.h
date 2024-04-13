@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-int legit(int **grille, int ia, int ja, int ib, int jb, int typepion);
+int legit(int **grille, int ia, int ja, int ib, int jb, int type_pion);
 /*
 Fonction qui permet d'indiquer si un déplacement de (ia,ja) vers (ib,jb) est possible dans la grille actuelle, compte tenu
 du type du pion

@@ -18,7 +18,7 @@ typedef enum
     SUDEST
 } direction_t;
 
-int legit(int **grille, int ia, int ja, int ib, int jb, int typepion)
+int legit(int **grille, int ia, int ja, int ib, int jb, int type_pion)
 {
     direction_t direction = RIEN;
     if (ia < 0 || ib < 0 || ja < 0 || jb < 0 || ia > 4 || ib > 4 || ja > 4 || jb > 4)
@@ -126,7 +126,7 @@ int legit(int **grille, int ia, int ja, int ib, int jb, int typepion)
     }
     // on est maintenant arrivé sur la case d'arrivée.On va vérifier qu'elle est compatible
 
-    if (typepion == 3)
+    if (type_pion == 3)
     {
         if (ii > 1 || jj > 1 || ii < -1 || jj < -1)
         {
