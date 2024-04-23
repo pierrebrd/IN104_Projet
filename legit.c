@@ -176,7 +176,7 @@ int legit(int **grille, int ia, int ja, int ib, int jb, int type_pion)
         // printf("ii jj %d %d\n", ii, jj);
         // printf("ii+ia ..%d %d\n", ia + ii, ja + jj);
         // printf("%d\n", grille[ia + ii][ja + jj]);
-        if (ia + ii < 0 || ja + jj < 0 || ia + ii > 4 || ib + jj > 4)
+        if (ia + ii < 0 || ja + jj < 0 || ia + ii > 4 || ja + jj > 4)
         {             // la prochaine case est hors grille
             return 0; // déplacement ok !
         }

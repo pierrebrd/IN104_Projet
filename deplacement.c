@@ -166,27 +166,27 @@ int coup(int **grille, int type_pion)
             grille[pos[2]][pos[3]] = type_pion;
             return 0;
         case 1:
-            printf("Déplacement invalide : case choisie hors-grille.\n");
+            printf("Déplacement invalide : case choisie hors-grille. Erreur 1\n");
             coup(grille, type_pion);
             return 2;
         case 5:
-            printf("Le bobail ne peut se déplacer que d'une case.\n");
+            printf("Le bobail ne peut se déplacer que d'une case. Erreur 5\n");
             coup(grille, type_pion);
             return 2;
         case 3:
-            printf("Les pions se déplacent horizontalement, verticalement ou diagonalement jusqu'à rencontrer un obstacle.\n");
+            printf("Les pions se déplacent horizontalement, verticalement ou diagonalement jusqu'à rencontrer un obstacle. Erreur 3\n");
             coup(grille, type_pion);
             return 2;
         case 6:
-            printf("Les pions se déplacent horizontalement, verticalement ou diagonalement jusqu'à rencontrer un obstacle.\n");
+            printf("Les pions se déplacent horizontalement, verticalement ou diagonalement jusqu'à rencontrer un obstacle.Erreur 6\n");
             coup(grille, type_pion);
             return 2;
         case 4:
-            printf("Les pions se déplacent horizontalement, verticalement ou diagonalement jusqu'à rencontrer un obstacle.\n");
+            printf("Les pions se déplacent horizontalement, verticalement ou diagonalement jusqu'à rencontrer un obstacle. Erreur 4\n");
             coup(grille, type_pion);
             return 2;
         case 2:
-            printf("Veuillez déplacer le pion.\n");
+            printf("Veuillez déplacer le pion. Erreur 2\n");
             coup(grille, type_pion);
             return 2;
         }
