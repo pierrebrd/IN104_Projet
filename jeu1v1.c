@@ -18,9 +18,13 @@ void jeu1v1()
     // while (victoire(grille, joueuractuel) == 0)
     for (int i = 0; i < 5; ++i)
     {
-        afficher(grille);
-        printf("Joueur %d, à vous de jouer ! Bougez le Bobail.\n", joueuractuel);
-        coup(grille, 3);
+        if (i != 0)
+        {
+            afficher(grille);
+            printf("Joueur %d, à vous de jouer ! Bougez le Bobail.\n", joueuractuel);
+            coup(grille, 3);
+        }
+
         afficher(grille);
         printf("Joueur %d, bougez un de vos pions.\n", joueuractuel);
         coup(grille, joueuractuel);
