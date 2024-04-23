@@ -4,6 +4,8 @@
 
 #include "affichage.h"
 #include "initialisation.h"
+#include "deplacement.h"
+#include "legit.h"
 
 int main()
 {
