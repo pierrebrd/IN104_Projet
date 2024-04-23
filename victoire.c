@@ -37,39 +37,35 @@ int victoire(int **grille, int joueur)
 
     // Cas ou le bobail ne peut pas bouger
     int voisins_occupés = 0;
-    if (legit(grille, x, y, x, y + 1, 3) != 0)
+    if (y + 1 > 4 || legit(grille, x, y, x, y + 1, 3) != 0)
     {
         voisins_occupés++;
     }
-    if (legit(grille, x, y, x, y, 3) != 0)
+    if (y - 1 < 0 || legit(grille, x, y, x, y - 1, 3) != 0)
     {
         voisins_occupés++;
     }
-    if (legit(grille, x, y, x, y - 1, 3) != 0)
+    if (x + 1 > 4 || y + 1 > 4 || legit(grille, x, y, x + 1, y + 1, 3) != 0)
     {
         voisins_occupés++;
     }
-    if (legit(grille, x, y, x - 1, y + 1, 3) != 0)
+    if (x + 1 > 4 || legit(grille, x, y, x + 1, y, 3) != 0)
     {
         voisins_occupés++;
     }
-    if (legit(grille, x, y, x - 1, y, 3) != 0)
+    if (x + 1 > 4 || y - 1 < 0 || legit(grille, x, y, x + 1, y - 1, 3) != 0)
     {
         voisins_occupés++;
     }
-    if (legit(grille, x, y, x - 1, y - 1, 3) != 0)
+    if (x - 1 < 0 || y + 1 > 4 || legit(grille, x, y, x - 1, y + 1, 3) != 0)
     {
         voisins_occupés++;
     }
-    if (legit(grille, x, y, x + 1, y + 1, 3) != 0)
+    if (x - 1 < 0 || legit(grille, x, y, x - 1, y, 3) != 0)
     {
         voisins_occupés++;
     }
-    if (legit(grille, x, y, x + 1, y, 3) != 0)
-    {
-        voisins_occupés++;
-    }
-    if (legit(grille, x, y, x - 1, y - 1, 3) != 0)
+    if (x - 1 < 0 || y - 1 < 0 || legit(grille, x, y, x - 1, y - 1, 3) != 0)
     {
         voisins_occupés++;
     }
