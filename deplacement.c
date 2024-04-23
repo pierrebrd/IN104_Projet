@@ -46,7 +46,6 @@ int input(int *pos)
         pos[0] = 4;
         break;
     default:
-        printf("Format attendu : LettreChiffre en majuscule sans espace.\n");
         VALID = 1;
         break;
     }
@@ -69,7 +68,6 @@ int input(int *pos)
         pos[2] = 4;
         break;
     default:
-        printf("Format attendu : LettreChiffre en majuscule sans espace.\n");
         VALID = 1;
         break;
     }
@@ -93,7 +91,6 @@ int input(int *pos)
         pos[1] = 4;
         break;
     default:
-        printf("Format attendu : LettreChiffre en majuscule sans espace.\n");
         VALID = 1;
         break;
     }
@@ -116,7 +113,6 @@ int input(int *pos)
         pos[3] = 4;
         break;
     default:
-        printf("Format attendu : LettreChiffre en majuscule sans espace.\n");
         VALID = 1;
         break;
     }
@@ -127,6 +123,7 @@ int input(int *pos)
     }
     else
     {
+        printf("Format attendu : LettreChiffre en majuscule sans espace.\n");
         input(pos);
         return 1;
     }

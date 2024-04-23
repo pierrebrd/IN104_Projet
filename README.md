@@ -25,4 +25,14 @@ Pour afficher les pion, on utilise des cercles dont on change la couleur
 On nomme les cases avec :
 une lettre entre A et E pour la ligne
 un chiffre entre 1 et 5 pour la colonne
-Ainsi (i=2,j=4) est représenté par C5.
+Ainsi (i=2,j=4) est représenté par C5, et on demande un tel input à l'utilisateur via la ligne de commande. Si l'utilisateur différe de ce format, il recoit un message d'erreur. Il nous a semblé trop fastidieux de comprendre les inputs incorrects mais compréhensibles tels que "C 5" ou "c5".
+
+On déplace le pion en changeant la valeur des cases de départ et d'arrivée dans la matrice.
+
+Les fonctions liées au déplacement se situent dans deplacements.h
+
+## LEGALITE DES COUPS
+
+## VICTOIRE
+
+
