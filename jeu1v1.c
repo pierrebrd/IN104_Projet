@@ -7,33 +7,32 @@
 #include "affichage.h"
 #include "legit.h"
 #include "initialisation.h"
-// #include "victore.h"
+#include "victoire.h"
 
 void jeu1v1()
 {
     printf("Le joueur 1 a les pions rouge, le joueur 2 a les pions verts, le  bobail est violet. Le joueur 1 commence\n");
     int **grille = initialisation();
-
+    int tour = 0;
     int joueuractuel = 1;
-    // while (victoire(grille, joueuractuel) == 0)
-    for (int i = 0; i < 5; ++i)
+    while (victoire(grille) == 0) // tant qu'aucun joueur n'a gagné
     {
-        if (i != 0)
+        ++tour;
+        if (tour != 1) // au premier tour, on ne bouge pas le bobail
         {
             afficher(grille);
             printf("Joueur %d, à vous de jouer ! Bougez le Bobail.\n", joueuractuel);
             coup(grille, 3);
         }
-
-        afficher(grille);
-        printf("Joueur %d, bougez un de vos pions.\n", joueuractuel);
-        coup(grille, joueuractuel);
+        if (victoire(grille) == 0)
+        {
+            afficher(grille);
+            printf("Joueur %d, bougez un de vos pions.\n", joueuractuel);
+            coup(grille, joueuractuel);
+        }
 
         joueuractuel = 1 + joueuractuel % 2;
     }
+    afficher(grille);
+    printf("Le joueur %d a gagné en %d tours !\n\n\n", victoire(grille), tour);
 }
-
-// il faut : implémenter le fait qu'on doive d'abord bouger le bobailpuis un de nos pions, et qu'on ne peut pas bouger les pions de l'autre... donc maybe modifier legit ?! en tout cas typepion doit correspondre au jouer qui joue/au bobail
-// il faudrait faire en sorte de ne pas bouger l'affichage de la grille : position initiale et finale sur la même ligne ? supprimer la ligne position initiale ? mettre le curseru apres la réponse du joueru?
-
-// Quand problème d'input ou de coup, refaire un afficher(grille)
