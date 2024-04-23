@@ -55,7 +55,7 @@ int victoire(int** grille,int joueur) {
     if (legit(grille,x,y,x+1,y) != 0) {
         voisins_occupés ++ ;
     }
-    if (legit(grille,x,y,x°1,y-1) != 0) {
+    if (legit(grille,x,y,x-1,y-1) != 0) {
         voisins_occupés ++ ;
     }
 
@@ -65,5 +65,6 @@ int victoire(int** grille,int joueur) {
     }
 
     // cas ou personne a gagné
+    return 0 ;
 
 }
