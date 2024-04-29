@@ -7,7 +7,7 @@
 #include "deplacement.h"
 #include "legit.h"
 
-int victoire(int** grille) ;
+int victoire(jeu_t *jeu);
 /*
 Retourne 0 si personne a gagné
 1 si le joueur 1 gagne

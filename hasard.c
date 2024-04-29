@@ -6,6 +6,7 @@
 #include "hasard.h"
 #include "legit.h"
 #include "victoire.h"
+#include "initialisation.h"
 
 typedef enum
 {
@@ -20,26 +21,14 @@ typedef enum
     SUDEST
 } direction_t;
 
-void coup_hasard(int **grille, int joueur, int tour)
+void coup_hasard(jeu_t *jeu, int joueur, int tour)
 {
     srand(time(NULL));
     if (tour != 1)
     { // on doit bouger le bobail aléatoirement
         // emplacement bobail
-        int x;
-        int y;
-        for (int i = 0; i < 4; i++)
-        {
-            for (int j = 0; j < 4; j++)
-            {
-                // si la case contient le bobail (encodé par un 3)
-                if (grille[i][j] == 3)
-                {
-                    x = i;
-                    y = j;
-                }
-            }
-        }
+        int x = jeu->x_pions[10];
+        int y = jeu->y_pions[10];
 
         // choix d'une direction
         int direction;
@@ -83,13 +72,15 @@ void coup_hasard(int **grille, int joueur, int tour)
             case RIEN:
                 break;
             }
-        } while (legit(grille, x, y, x + ii, y + jj, 3) != 0);
-        grille[x][y] = 0;
-        grille[x + ii][y + jj] = 3;
+        } while (legit(jeu, x, y, x + ii, y + jj, 3) != 0);
+        jeu->grille[x][y] = 0;
+        jeu->grille[x + ii][y + jj] = 3;
+        jeu->x_pions[10] = x + ii;
+        jeu->y_pions[10] = y + jj;
     }
 
     // maintenant, on bouge un pion si l'on n'a pas encore gagné
-    if (victoire(grille) == 0)
+    if (victoire(jeu) == 0)
     {
     }
 }

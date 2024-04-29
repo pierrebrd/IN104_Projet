@@ -3,4 +3,6 @@
 #include <stdbool.h>
 #include <time.h>
 
-void coup_hasard(int **grille, int joueur, int tour);
+#include "initialisation.h"
+
+void coup_hasard(jeu_t *jeu, int joueur, int tour);

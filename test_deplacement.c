@@ -7,14 +7,13 @@
 #include "legit.h"
 #include "deplacement.h"
 
-int main() {
-    int** grille = initialisation() ;
+int main()
+{
+    jeu_t *jeu = initialisation();
 
-    coup(grille) ;
+    coup(jeu, 1);
 
-    destruction(grille) ;
+    destruction(jeu);
 
     return 0;
-
-
 }

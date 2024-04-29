@@ -8,8 +8,8 @@
 
 int main()
 {
-    int **grille = initialisation();
-    afficher(grille);
-    printf("%d\n", legit(grille, 2, 2, 0, 2, 3));
+    jeu_t *jeu = initialisation();
+    afficher(jeu);
+    printf("%d\n", legit(jeu, 2, 2, 0, 2, 3));
     return 0;
 }

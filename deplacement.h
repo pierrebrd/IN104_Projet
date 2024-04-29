@@ -4,6 +4,10 @@
 #include <string.h>
 
 #include "legit.h"
+#include "initialisation.h"
+
+void changement_position(jeu_t *jeu, int *pos, int type_pion);
+/*Change la position d'un pion dans x_pions et y_pions*/
 
 int input(int *pos);
 /*Prend en argument un tableau de 4 entiers,
@@ -15,7 +19,7 @@ Retourne 0 si tout est ok
 Retourne 1 si mauvais format d'input par l'utilisateur
  */
 
-int coup(int **grille, int type_pion);
+int coup(jeu_t *jeu, int type_pion);
 /*Prend en argument un état du plateau de jeu,
 demande a l'utilisateur le coup à faire (appel à input),
 vérifie qu'il est légal (appel à legit)
