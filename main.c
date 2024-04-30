@@ -6,6 +6,7 @@
 #include "initialisation.h"
 #include "deplacement.h"
 #include "legit.h"
+#include "hasard.h"
 
 int main()
 {

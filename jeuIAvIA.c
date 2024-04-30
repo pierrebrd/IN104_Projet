@@ -8,6 +8,7 @@
 #include "legit.h"
 #include "initialisation.h"
 #include "victoire.h"
+#include "hasard.h"
 
 void jeuIAvIA()
 {
