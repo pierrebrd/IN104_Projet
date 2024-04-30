@@ -42,12 +42,12 @@ void jeu1vIA_aleatoire()
         { // L'humain joue
             if (tour != 1)
             { // au premier tour, on ne bouge pas le bobail
-                printf("Humain,à vous de jouer ! Bougez le Bobail.\n");
+                printf("Humain, à vous de jouer ! Bougez le Bobail.\n");
                 coup(jeu, 3);
+                afficher(jeu);
             }
             if (victoire(jeu) == 0)
             { // on bouge un pion sauf si la partie est déjà gagnée
-                afficher(jeu);
                 printf("Humain, bougez un de vos pions.\n");
                 coup(jeu, joueuractuel);
                 afficher(jeu);
@@ -56,6 +56,7 @@ void jeu1vIA_aleatoire()
         else
         {
             // COUP DE L'IA
+            printf("\n\n\n");
             coup_hasard(jeu, joueuractuel, tour);
             sleep(1);
             printf("Coup de l'IA ↓\n");
