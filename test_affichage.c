@@ -7,7 +7,7 @@
 
 int main()
 {
-    int **grille = initialisation();
-    afficher(grille);
+    jeu_t *jeu = initialisation();
+    afficher(jeu);
     return 0;
 }

@@ -6,6 +6,7 @@
 #include "deplacement.h"
 #include "affichage.h"
 #include "legit.h"
+#include "initialisation.h"
 
 int main()
 {
