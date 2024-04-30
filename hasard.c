@@ -36,7 +36,7 @@ void coup_hasard(jeu_t *jeu, int joueur, int tour)
         int jj;
         do
         { // on cherche une direction aléatoirement
-            direction = rand() % 9;
+            direction = rand() % 8 + 1;
             ii = 0;
             jj = 0;
             switch (direction)
@@ -97,7 +97,7 @@ void coup_hasard(jeu_t *jeu, int joueur, int tour)
             y = jeu->y_pions[nb_pion];
 
             // On va maintenant chercher une direction aléatoirement, de la même manière que pour le bobail au dessus
-            direction = rand() % 9;
+            direction = rand() % 8 + 1;
             ii = 0;
             jj = 0;
 
@@ -149,8 +149,8 @@ void coup_hasard(jeu_t *jeu, int joueur, int tour)
         // Il ne nous reste plus qu'à enregistrer la nouvelle position
         jeu->grille[x][y] = 0;
         jeu->grille[x + pas * ii][y + pas * jj] = joueur;
-        jeu->x_pions[(joueur - 1) * 5 + nb_pion] = x + pas * ii;
-        jeu->y_pions[(joueur - 1) * 5 + nb_pion] = y + pas * jj;
+        jeu->x_pions[nb_pion] = x + pas * ii;
+        jeu->y_pions[nb_pion] = y + pas * jj;
     }
 }
 
