@@ -41,4 +41,4 @@ Les fonctions liées au déplacement se situent dans deplacements.h
 
 ## IA
 
-Nous travaillons maintenant sur l'implémentation d'une IA, les fichiers sont dans la branche IA. Nous nous intéressons à la méthode de Monte Carlo tree search.
+Nous travaillons maintenant sur l'implémentation d'une IA, les fichiers sont dans la branche IA. Nous nous intéressons en premier lieu à une méthode de coups valides choisis au hasard, puis nous développerons la méthode de Monte Carlo tree search.
