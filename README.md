@@ -1,10 +1,9 @@
 # Jeu Bobail - Julie Aubry et Pierre Bordeau
 
-⚠️ Il y a deux branches, la branche IA est la plus à jour ⚠️ 
-
 ## MODE D'EMPLOI
 
 Pour jouer en 1v1, il faut pour l'instant éxécuter `make test_jeu1v1.x` pour compiler, puis lancer le jeu avec `./test_jeu1v1.x`
+Nous utilisons 'unistd.h', la bibliothèque standard de Linux, notamment pour la fonction sleep. Notre version du jeu ne fonctionne donc que sur Linux !
 
 ## AFFICHAGE DE LA GRILLE
 
@@ -43,4 +42,4 @@ Les fonctions liées au déplacement se situent dans deplacements.h
 
 ## IA
 
-Nous travaillons maintenant sur l'implémentation d'une IA, les fichiers sont dans la branche IA. Nous nous intéressons à la méthode de Monte Carlo tree search.
+Nous travaillons maintenant sur l'implémentation d'une IA, les fichiers sont dans la branche IA. Nous nous intéressons en premier lieu à une méthode de coups valides choisis au hasard, puis nous développerons la méthode de Monte Carlo tree search.

@@ -4,6 +4,7 @@
 
 #include "deplacement.h"
 #include "legit.h"
+#include "initialisation.h"
 
 typedef enum
 {
@@ -18,7 +19,7 @@ typedef enum
     SUDEST
 } direction_t;
 
-int legit(int **grille, int ia, int ja, int ib, int jb, int type_pion)
+int legit(jeu_t *jeu, int ia, int ja, int ib, int jb, int type_pion)
 {
     direction_t direction = RIEN;
     if (ia < 0 || ib < 0 || ja < 0 || jb < 0 || ia > 4 || ib > 4 || ja > 4 || jb > 4)
@@ -119,7 +120,7 @@ int legit(int **grille, int ia, int ja, int ib, int jb, int type_pion)
         case RIEN:
             break;
         }
-        if (grille[ia + ii][ja + jj] != 0)
+        if (jeu->grille[ia + ii][ja + jj] != 0)
         {
             return 4; // une case est déja occupée sur le chemin
         }
@@ -175,12 +176,12 @@ int legit(int **grille, int ia, int ja, int ib, int jb, int type_pion)
         }
         // printf("ii jj %d %d\n", ii, jj);
         // printf("ii+ia ..%d %d\n", ia + ii, ja + jj);
-        // printf("%d\n", grille[ia + ii][ja + jj]);
+        // printf("%d\n", jeu->grille[ia + ii][ja + jj]);
         if (ia + ii < 0 || ja + jj < 0 || ia + ii > 4 || ja + jj > 4)
         {             // la prochaine case est hors grille
             return 0; // déplacement ok !
         }
-        else if (grille[ia + ii][ja + jj] != 0)
+        else if (jeu->grille[ia + ii][ja + jj] != 0)
         {             // la prochaine case est occupée
             return 0; // déplacement ok !
         }

@@ -2,12 +2,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+#include "deplacement.h"
 #include "affichage.h"
+#include "legit.h"
 #include "initialisation.h"
+#include "victoire.h"
 
-int main()
-{
-    jeu_t *jeu = initialisation();
-    afficher(jeu);
-    return 0;
-}
+void jeu1vIA();

@@ -4,6 +4,31 @@
 #include <string.h>
 
 #include "legit.h"
+#include "initialisation.h"
+
+void changement_position(jeu_t *jeu, int *pos, int type_pion)
+
+{
+    if (type_pion == 3)
+    {
+        // Facile, on sait déja que le bobail est le 11ème pion
+        jeu->x_pions[10] = pos[2];
+        jeu->y_pions[10] = pos[3];
+    }
+    else
+    {
+        int nb_pion = (type_pion - 1) * 5; // on commence la recherche à 0 pour le joueur 1, à 5 pour le joueur 2
+        while (jeu->x_pions[nb_pion] != pos[0] && jeu->y_pions[nb_pion] != pos[1])
+        {
+            // tant qu'on n'a pas trouvé le bon pion
+            ++nb_pion;
+            // on passe au pion suivant
+        }
+        // nb_pion correspond maintenant au pion que nous sommes en train de bouger, il suffit de changer sa position
+        jeu->x_pions[nb_pion] = pos[2];
+        jeu->y_pions[nb_pion] = pos[3];
+    }
+}
 
 int input(int *pos)
 {
@@ -133,58 +158,60 @@ int input(int *pos)
 COUP
 ***********/
 
-int coup(int **grille, int type_pion)
+int coup(jeu_t *jeu, int type_pion)
 {
     int pos[4];
     int check_input = input(pos);
 
     if (check_input == 1)
     {
-        coup(grille, type_pion); // peut etre que ca pose problème et que ca va lancer 2 fois le truc
-        return 1;                // entrée au mauvais format
+        coup(jeu, type_pion); // peut etre que ca pose problème et que ca va lancer 2 fois le truc
+        return 1;             // entrée au mauvais format
     }
 
-    else if (grille[pos[0]][pos[1]] != type_pion)
+    else if (jeu->grille[pos[0]][pos[1]] != type_pion)
     {
         printf("Vous ne pouvez pas bougez ce pion !\n");
-        coup(grille, type_pion);
+        coup(jeu, type_pion);
         return 2;
     }
     else
     {
-        int check_legit = legit(grille, pos[0], pos[1], pos[2], pos[3], type_pion);
+        int check_legit = legit(jeu, pos[0], pos[1], pos[2], pos[3], type_pion);
 
         switch (check_legit)
         {
         case 0:
             // vider la case dont le pion part
-            grille[pos[0]][pos[1]] = 0;
+            jeu->grille[pos[0]][pos[1]] = 0;
             // remplir la case d'arrivée
-            grille[pos[2]][pos[3]] = type_pion;
+            jeu->grille[pos[2]][pos[3]] = type_pion;
+            // changer la position du pion dans x_pions et y_pions
+            changement_position(jeu, pos, type_pion);
             return 0;
         case 1:
             printf("Déplacement invalide : case choisie hors-grille. Erreur 1\n");
-            coup(grille, type_pion);
+            coup(jeu, type_pion);
             return 2;
         case 5:
             printf("Le bobail ne peut se déplacer que d'une case. Erreur 5\n");
-            coup(grille, type_pion);
+            coup(jeu, type_pion);
             return 2;
         case 3:
             printf("Les pions se déplacent horizontalement, verticalement ou diagonalement jusqu'à rencontrer un obstacle. Erreur 3\n");
-            coup(grille, type_pion);
+            coup(jeu, type_pion);
             return 2;
         case 6:
             printf("Les pions se déplacent horizontalement, verticalement ou diagonalement jusqu'à rencontrer un obstacle.Erreur 6\n");
-            coup(grille, type_pion);
+            coup(jeu, type_pion);
             return 2;
         case 4:
             printf("Les pions se déplacent horizontalement, verticalement ou diagonalement jusqu'à rencontrer un obstacle. Erreur 4\n");
-            coup(grille, type_pion);
+            coup(jeu, type_pion);
             return 2;
         case 2:
             printf("Veuillez déplacer le pion. Erreur 2\n");
-            coup(grille, type_pion);
+            coup(jeu, type_pion);
             return 2;
         }
     }

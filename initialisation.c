@@ -4,9 +4,9 @@
 
 #include "initialisation.h"
 
-int **initialisation()
+jeu_t *initialisation()
 {
-    /*crée une matrice 5*5, la remplit et la renvoie
+    /*crée une matrice 5*5, la remplit
     remplit en place la config initiale de la matrice
 
     0 : case vide
@@ -18,6 +18,8 @@ int **initialisation()
     lignes i croissant de haut en bas
     colonnes j croissant de gauche à droite
     -> le joueur 1 a ses pions dans la colonne j=0, et le joueur 2 dans j=4
+
+    Initialise aussi le struct jeu_t et les listes des positions des pions, et le renvoie
     */
     int **grille = malloc(5 * sizeof(int *));
     if (grille == NULL)
@@ -44,18 +46,38 @@ int **initialisation()
     }
     grille[2][2] = 3;
 
-    return grille;
+    int *x_pions = malloc(sizeof(int) * 11);
+    int *y_pions = malloc(sizeof(int) * 11);
+    for (int i = 0; i < 5; ++i)
+    {
+        x_pions[i] = i; // joueur 1
+        y_pions[i] = 0;
+        x_pions[i + 5] = i; // joueur 2
+        y_pions[i + 5] = 4;
+    }
+    x_pions[10] = 2; // bobail
+    y_pions[10] = 2;
+
+    jeu_t *jeu = malloc(sizeof(jeu_t)); // on initialise le struct
+    jeu->grille = grille;
+    jeu->x_pions = x_pions;
+    jeu->y_pions = y_pions;
+
+    return jeu;
 }
 
 ////////// DESTRUCTION  //////////
 
-void destruction(int **grille)
+void destruction(jeu_t *jeu)
 {
-    /*detruit la grille en libérant l'espace mémoire*/
+    /*detruit le struct en libérant l'espace mémoire*/
 
     for (int k = 0; k < 5; k++)
     {
-        free(grille[k]);
+        free(jeu->grille[k]);
     }
-    free(grille);
+    free(jeu->grille);
+    free(jeu->x_pions);
+    free(jeu->y_pions);
+    free(jeu);
 }
