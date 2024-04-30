@@ -2,4 +2,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-void regles_1v1()
+void regles() ;
+/* Affiche et explique les règles au joueur
+ */

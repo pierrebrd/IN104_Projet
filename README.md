@@ -3,6 +3,7 @@
 ## MODE D'EMPLOI
 
 Pour jouer en 1v1, il faut pour l'instant éxécuter `make test_jeu1v1.x` pour compiler, puis lancer le jeu avec `./test_jeu1v1.x`
+Nous utilisons 'unistd.h', la bibliothèque standard de Linux, notamment pour la fonction sleep. Notre version du jeu ne fonctionne donc que sur Linux !
 
 ## AFFICHAGE DE LA GRILLE
 

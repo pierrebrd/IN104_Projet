@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <unistd.h>
 
-void regles_1v1() {
+void regles() {
     //explication affichagfe
     printf("Amusez vous bien avec le bobail !\nVous jouerez sur une grille de 5x5, ou les lignes sont numérotées de A a E et les colonnes de 1 à 5.\nJoueur 1, vous aurez 5 pions rouges ") ;
     printf("\033[0;91m");
@@ -29,7 +29,5 @@ void regles_1v1() {
     printf("A chaque tour, le joueur déplace d'abord le bobail puis un de ses pions.\nLe bobail peut se déplacer d'une case verticalement, horizontalement ou en diagonale.\nLes autres pions se déplacent verticalement, horizontalement ou en diagonale jusqu'à heurter un obstacle.\n") ;
 }
 
-int main() 
-{
-    regles_1v1() ;
-}
+
+void ()
