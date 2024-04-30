@@ -8,4 +8,4 @@
 #include "initialisation.h"
 #include "victoire.h"
 
-void jeu1vIA();
+void jeu1vIA_aleatoire();
