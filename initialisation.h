@@ -34,3 +34,7 @@ Initilialise aussi le struct, et le renvoie
 
 void destruction(jeu_t *jeu);
 /*detruit le struct en libérant l'espace mémoire*/
+
+void copy_jeu (jeu_t* old_jeu, jeu_t* new_jeu)
+/*On ne peut pas copier directement le struct parce que cela revient juste à créer un second pointeur vers la même adresse
+cette adresse prend en argument le jeu et un struct vide qu'il va remplir */

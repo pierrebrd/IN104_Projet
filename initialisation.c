@@ -81,3 +81,16 @@ void destruction(jeu_t *jeu)
     free(jeu->y_pions);
     free(jeu);
 }
+
+////////// COPY STRUCT //////////
+void copy_jeu (jeu_t* old_jeu, jeu_t* new_jeu) {
+    for (int i = 0 ; i < 5 ; i++) {
+        for (int j = 0 ; j < 5 ; j++) {
+            new_jeu->grille[i][j] = old_jeu->grille[i][j] ;
+        }
+    }
+    for (int i = 0 ; i < 11 ; i++) {
+        new_jeu->x_pions[i] = old_jeu->x_pions[i] ;
+        new_jeu->y_pions[i] = old_jeu->y_pions[i] ;
+    }
+}

@@ -10,6 +10,7 @@
 #include "initialisation.h"
 #include "victoire.h"
 #include "hasard.h"
+#include "UX.h"
 
 void jeu1vIA_aleatoire()
 {
@@ -18,17 +19,17 @@ void jeu1vIA_aleatoire()
     printf("Le joueur 1 jouera en premier. Voulez vous être le joueur : 1 ou 2 ? : ");
     scanf("%d", &joueurHumain);
     printf("\n");
-    // int joueurIA = joueurHumain % 2 + 1;
+    regles() ;
 
-    // expliquer l'affichage
-    if (joueurHumain == 1)
-    {
-        printf("Vous avez les pions rouges, l'IA a les pions verts. Le bobail est en violet\n");
-    }
-    else
-    {
-        printf("Vous avez les pions verts, l'IA a les pions rouges. Le bobail est en violet\n");
-    }
+    // // expliquer l'affichage
+    // if (joueurHumain == 1)
+    // {
+    //     printf("Vous avez les pions rouges, l'IA a les pions verts. Le bobail est en violet\n");
+    // }
+    // else
+    // {
+    //     printf("Vous avez les pions verts, l'IA a les pions rouges. Le bobail est en violet\n");
+    // }
 
     jeu_t *jeu = initialisation();
     int tour = 0;

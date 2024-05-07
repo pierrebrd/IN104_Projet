@@ -8,10 +8,11 @@
 #include "legit.h"
 #include "initialisation.h"
 #include "victoire.h"
+#include "UX.h"
 
 void jeu1v1()
 {
-    printf("Le joueur 1 a les pions rouge, le joueur 2 a les pions verts, le  bobail est violet. Le joueur 1 commence\n");
+    regles() ;
     jeu_t *jeu = initialisation();
     int tour = 0;
     int joueuractuel = 1;
