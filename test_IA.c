@@ -2,24 +2,17 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#include "initialisation.h"
 #include "IA.h"
 
-int explore_aleatoire(jeu_t *jeu_provisoire, int joueur, int tour)
-{
-    int joueur_provisoire = joueur;
-    int tour_provisoire = tour;
-    while (victoire(jeu_provisoire) == 0)
-    {
-        coup_hasard(jeu_provisoire, joueur_provisoire, tour_provisoire);
-        joueur_provisoire = joueur_provisoire % 2 + 1;
-        tour_provisoire++;
-    }
-    return (victoire(jeu_provisoire));
-}
 
-int MCTS(jeu_t *jeu, int joueur, int tour)
-{
+    
+    
+int main() {
+    jeu_t * jeu = initialisation() ;
+    int joueur = 1 ;
+    int tour = 5 ;
+
+    
     // On cherche la meilleure des actions possibles pour joueur
     // D'abord, on initialise deux listes : une qui compte le nombre de succès par pion et direction possible et par direction du bobail, et une qui compte le nombre de coups tentés dans cette direction.
     // Si la direction est bloquée, on utilise -1 dans la première liste
@@ -67,13 +60,13 @@ int MCTS(jeu_t *jeu, int joueur, int tour)
         }
     }
 
+
+
+
+
     for (int i = 0 ; i < 360 ; i++) {
         printf("indice %d nbr explore %d nbr succes %d\n", i, nb_total[i], nb_succes[i]) ;
     }
+} 
     
-
-
-    return 0;
-}
-
-// par construction, un move gagnant du bobail ou d'un pion devrai avoir autant de succes que d'itérations donc sera choisi !!
+    

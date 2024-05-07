@@ -22,6 +22,9 @@ test_affichage.x: test_affichage.o initialisation.o affichage.o
 test_legit.x: test_legit.o legit.o initialisation.o affichage.o
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
+test_IA.x : test_IA.o IA.o
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+
 
 %.x: %.o
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
