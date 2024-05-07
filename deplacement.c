@@ -5,6 +5,20 @@
 
 #include "legit.h"
 #include "initialisation.h"
+#include "victoire.h"
+
+typedef enum
+{
+    NORD,
+    SUD,
+    OUEST,
+    EST,
+    NORDOUEST,
+    NORDEST,
+    SUDOUEST,
+    SUDEST,
+    RIEN
+} direction_t;
 
 void changement_position(jeu_t *jeu, int *pos, int type_pion)
 
@@ -216,4 +230,114 @@ int coup(jeu_t *jeu, int type_pion)
         }
     }
     return 0;
+}
+
+void jouer_coup(jeu_t *jeu, int joueur, int indice_coup)
+{
+    int direction_bobail = indice_coup / 40;
+    int nb_pion = (indice_coup % 40) / 8 + 5 * (joueur - 1);
+    int direction_pion = indice_coup % 8;
+
+    // On commence par bouger le bobail
+    int x = jeu->x_pions[10];
+    int y = jeu->y_pions[10];
+    int ii = 0;
+    int jj = 0;
+
+    switch (direction_bobail)
+    {
+    case SUD:
+        ii = 1;
+        break;
+    case NORD:
+        ii = -1;
+        break;
+    case EST:
+        jj = 1;
+        break;
+    case OUEST:
+        jj = -1;
+        break;
+    case NORDOUEST:
+        ii = -1;
+        jj = -1;
+        break;
+    case NORDEST:
+        ii = -1;
+        jj = 1;
+        break;
+    case SUDEST:
+        ii = 1;
+        jj = 1;
+        break;
+    case SUDOUEST:
+        ii = 1;
+        jj = -1;
+        break;
+    case RIEN:
+        break;
+    }
+    jeu->grille[x][y] = 0;
+    jeu->grille[x + ii][y + jj] = 3;
+    jeu->x_pions[10] = x + ii;
+    jeu->y_pions[10] = y + jj;
+
+    // on bouge maitenant le pion, si la partie n'est pas gagnée
+    if (victoire(jeu) == 0)
+    {
+        ii = 0;
+        jj = 0;
+        x = jeu->x_pions[nb_pion];
+        y = jeu->y_pions[nb_pion];
+
+        switch (direction_pion)
+        { // défini les incréments en fonction de la direction
+        case SUD:
+            ii = 1;
+            break;
+        case NORD:
+            ii = -1;
+            break;
+        case EST:
+            jj = 1;
+            break;
+        case OUEST:
+            jj = -1;
+            break;
+        case NORDOUEST:
+            ii = -1;
+            jj = -1;
+            break;
+        case NORDEST:
+            ii = -1;
+            jj = 1;
+            break;
+        case SUDEST:
+            ii = 1;
+            jj = 1;
+            break;
+        case SUDOUEST:
+            ii = 1;
+            jj = -1;
+            break;
+        case RIEN:
+            break;
+        }
+
+        // On continue à avancer dans la direction tant qu'on n'est pas au bout
+        int pas = 1;
+        while (x + pas * ii >= 0 && x + pas * ii <= 4 && y + pas * jj >= 0 && y + pas * jj <= 4 && jeu->grille[x + pas * ii][y + pas * jj] == 0)
+        { // tant qu'on est sur une cas vide dans la grille, on essaie d'avancer
+            ++pas;
+        }
+
+        // on a avancé trop loin, on recule
+        --pas;
+
+        // Il ne nous reste plus qu'à enregistrer la nouvelle position
+        jeu->grille[x][y] = 0;
+        jeu->grille[x + pas * ii][y + pas * jj] = joueur;
+        jeu->x_pions[nb_pion] = x + pas * ii;
+        jeu->y_pions[nb_pion] = y + pas * jj;
+    }
 }

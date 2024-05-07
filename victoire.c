@@ -9,7 +9,8 @@
 
 int victoire(jeu_t *jeu, int joueur)
 {
-    // emplacement bobail
+    // printf("victoireIN\n");
+    //  emplacement bobail
     int x = jeu->x_pions[10];
     int y = jeu->y_pions[10];
 

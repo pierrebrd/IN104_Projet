@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include <time.h>
 
 #include "hasard.h"
 #include "legit.h"
@@ -72,6 +71,7 @@ int coup_hasard(jeu_t *jeu, int joueur, int tour)
             case RIEN:
                 break;
             }
+
         } while (legit(jeu, x, y, x + ii, y + jj, 3) != 0); // on continue à chercher tant que la direction n'est pas valide
         jeu->grille[x][y] = 0;
         jeu->grille[x + ii][y + jj] = 3;
@@ -80,17 +80,20 @@ int coup_hasard(jeu_t *jeu, int joueur, int tour)
     }
 
     // maintenant, on bouge un pion si l'on n'a pas encore gagné
-    int nb_pion;
-    int direction;
+    int nb_pion = 0; // initialisation avant de rentrer dans la boucle
+    int direction = 0;
     if (victoire(jeu) == 0)
     {
-        int pas; // Cette variable va nous servir pour savoir si le pion et la direction ne sont pas bloquées, auquel cas il vaudra 0 à la fin de la boucle suivante
+        int nb_recherches = 0; // on ne veut pas boucler à l'infini
+        int pas;               // Cette variable va nous servir pour savoir si le pion et la direction ne sont pas bloquées, auquel cas il vaudra 0 à la fin de la boucle suivante
         int x;
         int y;
         int ii;
         int jj;
         do
         {
+            ++nb_recherches;
+
             // On choisit un pion qui va bouger
             nb_pion = rand() % 5 + (joueur - 1) * 5;
             x = jeu->x_pions[nb_pion];
@@ -141,8 +144,15 @@ int coup_hasard(jeu_t *jeu, int joueur, int tour)
             { // tant qu'on est sur une cas vide dans la grille, on essaie d'avancer
                 ++pas;
             }
+
             // on a avancé trop loin, on recule
             --pas;
+
+            if (nb_recherches > 10000)
+            { // on abandonne la branche, le jeu est bloqué
+                // afficher(jeu);
+                return 404; // code qui est renvoyé lorsque le jeu est bloqué
+            }
 
         } while (pas == 0); // la direction ne nous permet pas d'avancer, on va rechercher un nouveau pion et une nouvelle direction
 
@@ -153,7 +163,7 @@ int coup_hasard(jeu_t *jeu, int joueur, int tour)
         jeu->y_pions[nb_pion] = y + pas * jj;
     }
 
-    printf("%d\n", 40 * direction_bobail + 8 * (nb_pion % 5) + direction);
+    // printf("%d\n", 40 * direction_bobail + 8 * (nb_pion % 5) + direction);
     return (40 * direction_bobail + 8 * (nb_pion % 5) + direction); // On en a besoin dans l'implémentation de MCTS
 }
 

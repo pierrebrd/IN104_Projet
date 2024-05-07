@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <unistd.h> //pour utiliser sleep
+#include <time.h>   //pour initialiser le random
 
 #include "jeu1vIA.h"
 #include "deplacement.h"
@@ -14,12 +15,13 @@
 
 void jeu1vIA_aleatoire()
 {
+    srand(time(NULL)); // initialisation du random
     // Demander au joueur s'il est joueur 1 ou joueur 2
     int joueurHumain;
     printf("Le joueur 1 jouera en premier. Voulez vous être le joueur : 1 ou 2 ? : ");
     scanf("%d", &joueurHumain);
     printf("\n");
-    regles() ;
+    regles();
 
     // // expliquer l'affichage
     // if (joueurHumain == 1)

@@ -27,3 +27,6 @@ vérifie qu'il est légal (appel à legit)
 Retourne 0 si tout est ok
 Retourne 1 si mauvais format d'entrée
 Retourne 2 si déplacement illégal*/
+
+void jouer_coup(jeu_t *jeu, int joueur, int indice_coup);
+/*Joue un coup indicé entre 0 et 359*/
