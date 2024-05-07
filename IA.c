@@ -5,7 +5,7 @@
 #include "initialisation.h"
 #include "IA.h"
 
-int branche(jeu_t *jeu_provisoire, int joueur, int tour)
+int explore_aleatoire(jeu_t *jeu_provisoire, int joueur, int tour)
 {
     int joueur_provisoire = joueur;
     int tour_provisoire = tour;
@@ -50,11 +50,11 @@ int MCTS(jeu_t *jeu, int joueur, int tour)
 
     // ceci doit etre mis dans une boucle ou une fonction !!! On se fixe une limite d'itérations ?
 
-    jeu_provisoire = jeu; // on retourne à l'état initial
+        jeu_provisoire = jeu; // on retourne à l'état initial  //on va remplacer par la fonction copy !
     int joueur_provisoire = joueur;
     int indice_test = coup_hasard(jeu_provisoire, joueur_provisoire, tour); // on enregistre la position de notre test de départ, et on modifie jeu_provisoire
     joueur_provisoire = joueur_provisoire % 2 + 1;
-    int resultat = branche(jeu_provisoire, joueur_provisoire, tour + 1); // maitenant on jouer aléatoirement jusqua la victoire
+    int resultat = explore_aleatoire(jeu_provisoire, joueur_provisoire, tour + 1); // maitenant on jouer aléatoirement jusqua la victoire
 
     if (resultat == joueur)
     {

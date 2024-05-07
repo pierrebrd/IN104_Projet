@@ -18,7 +18,7 @@ int main(int argc, char **argv)
     {
         // jeu_provisoire = jeu; // ne marche pas ! il faut copier, pas renvoyer vers la même adresse !
         jeu_t *jeu_provisoire = initialisation();
-        S = S + branche(jeu_provisoire, 1, 1) % 2; // compte les victoires de J1
+        S = S + explore_aleatoire(jeu_provisoire, 1, 1) % 2; // compte les victoires de J1
         destruction(jeu_provisoire);
     }
     printf("%d\n", S);

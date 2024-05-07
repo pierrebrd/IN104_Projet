@@ -4,4 +4,4 @@
 *.o
 *.out
 *.txt
-.vscode/
+*.json
