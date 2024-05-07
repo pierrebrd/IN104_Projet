@@ -67,12 +67,6 @@ int MCTS(jeu_t *jeu, int joueur, int tour)
         }
     }
 
-    for (int i = 0 ; i < 360 ; i++) {
-        printf("indice %d nbr explore %d nbr succes %d\n", i, nb_total[i], nb_succes[i]) ;
-    }
-    
-
-
     return 0;
 }
 
