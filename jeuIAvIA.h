@@ -9,3 +9,4 @@
 #include "victoire.h"
 
 void jeuIAvIA_aleatoire();
+/* permet  de regarder deux ordinateurs jouer, qui jouent des coups complètement aléatoires */

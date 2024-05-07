@@ -5,4 +5,5 @@
 
 #include "initialisation.h"
 
-void coup_hasard(jeu_t *jeu, int joueur, int tour);
+int coup_hasard(jeu_t *jeu, int joueur, int tour);
+/* Génère un coup totalement aléatoire, en prenant en compte le joueur qui joue et le tour (on ne bouge pas le bobail au tour 1)*/

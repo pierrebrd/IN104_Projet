@@ -8,7 +8,6 @@
 
 typedef enum
 {
-    RIEN,
     NORD,
     SUD,
     OUEST,
@@ -16,7 +15,8 @@ typedef enum
     NORDOUEST,
     NORDEST,
     SUDOUEST,
-    SUDEST
+    SUDEST,
+    RIEN
 } direction_t;
 
 int legit(jeu_t *jeu, int ia, int ja, int ib, int jb, int type_pion)

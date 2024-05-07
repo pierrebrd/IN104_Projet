@@ -10,7 +10,6 @@
 
 typedef enum
 {
-    RIEN,
     NORD,
     SUD,
     OUEST,
@@ -18,12 +17,13 @@ typedef enum
     NORDOUEST,
     NORDEST,
     SUDOUEST,
-    SUDEST
+    SUDEST,
+    RIEN
 } direction_t;
 
-void coup_hasard(jeu_t *jeu, int joueur, int tour)
+int coup_hasard(jeu_t *jeu, int joueur, int tour)
 {
-    srand(time(NULL));
+    int direction_bobail = 8; // si il ne bouge pas, sa direction est 8
     if (tour != 1)
     { // on doit bouger le bobail aléatoirement
         // emplacement bobail
@@ -31,15 +31,15 @@ void coup_hasard(jeu_t *jeu, int joueur, int tour)
         int y = jeu->y_pions[10];
 
         // choix d'une direction
-        int direction;
+
         int ii;
         int jj;
         do
         { // on cherche une direction aléatoirement
-            direction = rand() % 8 + 1;
+            direction_bobail = rand() % 8;
             ii = 0;
             jj = 0;
-            switch (direction)
+            switch (direction_bobail)
             {
             case SUD:
                 ii = 1;
@@ -80,13 +80,13 @@ void coup_hasard(jeu_t *jeu, int joueur, int tour)
     }
 
     // maintenant, on bouge un pion si l'on n'a pas encore gagné
+    int nb_pion;
+    int direction;
     if (victoire(jeu) == 0)
     {
         int pas; // Cette variable va nous servir pour savoir si le pion et la direction ne sont pas bloquées, auquel cas il vaudra 0 à la fin de la boucle suivante
-        int nb_pion;
         int x;
         int y;
-        int direction;
         int ii;
         int jj;
         do
@@ -97,7 +97,7 @@ void coup_hasard(jeu_t *jeu, int joueur, int tour)
             y = jeu->y_pions[nb_pion];
 
             // On va maintenant chercher une direction aléatoirement, de la même manière que pour le bobail au dessus
-            direction = rand() % 8 + 1;
+            direction = rand() % 8;
             ii = 0;
             jj = 0;
 
@@ -152,8 +152,13 @@ void coup_hasard(jeu_t *jeu, int joueur, int tour)
         jeu->x_pions[nb_pion] = x + pas * ii;
         jeu->y_pions[nb_pion] = y + pas * jj;
     }
+
+    printf("%d\n", 40 * direction_bobail + 8 * (nb_pion % 5) + direction);
+    return (40 * direction_bobail + 8 * (nb_pion % 5) + direction); // On en a besoin dans l'implémentation de MCTS
 }
 
 // maybe implémenter le fait que bouger aléatoirement c'est bête ? genre on essate toujours de à peu près déplacer le bobail vers notre coté et pas vers l'adversaire ?
 
 // on reprend beaucoup d'éléments de legit.c, peut etre dans legit.c directement faire une fonction qui prend en argument une direction plutot qu'une position et renvoie si c'est okay
+
+// PB !!!! on est bloqué et on ne trouve pas de solutions
