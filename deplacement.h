@@ -20,13 +20,30 @@ Retourne 1 si mauvais format d'input par l'utilisateur
  */
 
 int coup(jeu_t *jeu, int type_pion);
-/*Prend en argument un état du plateau de jeu,
-demande a l'utilisateur le coup à faire (appel à input),
-vérifie qu'il est légal (appel à legit)
+/*Demande a l'utilisateur via la ligne de commande le coup qu'il veut jouer (appel à input de deplacement.h),
+vérifie qu'il est légal (appel à legit de legit.h)
 
-Retourne 0 si tout est ok
-Retourne 1 si mauvais format d'entrée
-Retourne 2 si déplacement illégal*/
+ARGUMENT
+jeu_t *jeu : état actuel du jeu
+int type_pion : type du pion à deplacer, 1 si appartient à joueur 1, 2 si appartient à joueur 2, 3 si bobail
+
+RETURN VALUES
+0 si tout est ok
+1 si mauvais format d'entrée
+2 si déplacement illégal*/
 
 void jouer_coup(jeu_t *jeu, int joueur, int indice_coup);
-/*Joue un coup indicé entre 0 et 359*/
+/*Joue un coup indicé de la manière suivante comprise entre 0 et 360:
+40*direction_bobail + 8*nb_pion%5 + direction_pion
+
+Pour retrouver de manière explicite : 
+direction_bobail = indice_coup / 40;
+nb_pion = (indice_coup % 40) / 8 + 5 * (joueur - 1);
+direction_pion = indice_coup % 8;
+
+ARGUMENT
+jeu_t *jeu : état actuel du jeu
+int joueur : numéro du joueur, 1 ou 2
+int indice_coup : indice repérant le coup à jouer, décrit ci dessus 
+
+*/

@@ -89,7 +89,6 @@ int MCTS(jeu_t *jeu, int joueur, int tour)
 
 
 int MCTS_improved(jeu_t *jeu, int joueur, int tour, int anticipation) {
-    printf("début MCTS improved") ;
 
 
     // Indice d'un coup possible: 40*direction_bobail + 8*nb_pion%5 + direction_pion
@@ -104,11 +103,10 @@ int MCTS_improved(jeu_t *jeu, int joueur, int tour, int anticipation) {
     copy_jeu(jeu, jeu_anticip) ;
 
     // On va anticiper les (2*anticipation -1) prochains coups afin d'anticiper les (anticipation) coups de l'adversaire et de ne pas se mettre dans une facheuse posture
-    int joueur_anticip = joueur %2 +1 ;
+    int joueur_anticip = joueur  ;
     int nbr_coup_anticip = 0 ; // compte le nbr de coups du joueur adversaire anticipés
     // On sort de la boucle si un des joueurs gagne. Ca sert à rien de simuler plus loin, et ca risque meme d'engendrer des bugs
     while( victoire(jeu_anticip) == 0 && nbr_coup_anticip < anticipation) {
-        printf("boucle anticipation %d",nbr_coup_anticip) ;
         int indice_coup_anticipe = MCTS_improved(jeu_anticip, joueur_anticip , tour + 1, anticipation -1) ;
         jouer_coup(jeu_anticip, joueur_anticip , indice_coup_anticipe);
         joueur_anticip = joueur_anticip %2 +1 ;
@@ -122,12 +120,15 @@ int MCTS_improved(jeu_t *jeu, int joueur, int tour, int anticipation) {
 
 
     for (int i = 0; i < 100000; i++)
-    {            
-        copy_jeu(jeu, jeu_anticip); // on retourne à l'état initial
+    {           
+        copy_jeu(jeu_anticip, jeu_provisoire); // on retourne à l'état initial
         int joueur_provisoire = joueur;
         int indice_test = coup_hasard(jeu_provisoire, joueur_provisoire, tour); // on enregistre la position de notre test de départ, et on modifie jeu_provisoire. Pas besoin de vérifier si le coup est bloqué
         joueur_provisoire = joueur_provisoire % 2 + 1;
         int resultat = explore_aleatoire(jeu_provisoire, joueur_provisoire, tour + 1); // 0 si bloqué, 1 si J1 gagne, 2 si J2 gagne
+
+        //printf("boucle exploration %d\n", i) ; 
+        //afficher(jeu_provisoire) ;
 
         // maitenant on jouer aléatoirement jusqua la victoire
         if (resultat == joueur)

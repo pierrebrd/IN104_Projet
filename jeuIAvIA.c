@@ -69,9 +69,7 @@ void jeuIAvIA_improved(int anticipation)
     while (victoire(jeu) == 0) // tant qu'aucun joueur n'a gagné
     {
         ++tour;
-        printf("dans IAvIA avant MCTS\n") ;
         int indice_coup = MCTS_improved(jeu, joueuractuel, tour, anticipation); // l'IA joue choisit le meilleur coup
-        printf("blalbla");
         //int indice_coup = 5 ; // DEBUGGAGE
         // Il faut maintenant jouer le coup
         jouer_coup(jeu, joueuractuel, indice_coup);
