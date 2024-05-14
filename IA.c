@@ -92,7 +92,7 @@ int MCTS(jeu_t *jeu, int joueur, int tour)
     double max = 0;
     for (int i = 0; i < 360; i++)
     {
-        if (ratio[i] > max)
+        if (ratio[i] >= max)
         {
             max = ratio[i];
             ind_max = i;
