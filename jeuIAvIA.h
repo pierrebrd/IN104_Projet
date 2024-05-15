@@ -14,5 +14,5 @@ void jeuIAvIA_aleatoire();
 void jeuIAvIA();
 /* permet  de regarder deux ordinateurs jouer intelligement */
 
-void jeuIAvIA_improved(int anticipation);
+void jeuIAvIA_improved();
 /* permet  de regarder deux ordinateurs jouer encore plus intelligement */

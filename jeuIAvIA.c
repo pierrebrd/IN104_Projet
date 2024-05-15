@@ -58,7 +58,7 @@ void jeuIAvIA()
     printf("L'IA %d a gagné en %d tours !\n\n\n", victoire(jeu), tour);
 }
 
-void jeuIAvIA_improved(int anticipation)
+void jeuIAvIA_improved()
 {
     srand(time(NULL)); // initialisation du random
     jeu_t *jeu = initialisation();
@@ -69,7 +69,7 @@ void jeuIAvIA_improved(int anticipation)
     while (victoire(jeu) == 0) // tant qu'aucun joueur n'a gagné
     {
         ++tour;
-        int indice_coup = MCTS_improved(jeu, joueuractuel, tour, anticipation); // l'IA joue choisit le meilleur coup
+        int indice_coup = MCTS_improved(jeu, joueuractuel, tour); // l'IA joue choisit le meilleur coup
         //int indice_coup = 5 ; // DEBUGGAGE
         // Il faut maintenant jouer le coup
         jouer_coup(jeu, joueuractuel, indice_coup);
