@@ -7,7 +7,7 @@
 int main()
 {
     // jeuIAvIA_aleatoire();
-    jeuIAvIA();
-    //jeuIAvIA_improved();
+    //jeuIAvIA();
+    jeuIAvIA_improved();
     return 0;
 }

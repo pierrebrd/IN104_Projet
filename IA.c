@@ -25,7 +25,7 @@ int explore_aleatoire(jeu_t *jeu_provisoire, int joueur, int tour)
     return (victoire(jeu_provisoire));
 }
 
-int MCTS(jeu_t *jeu, int joueur, int tour)
+int MCTS(jeu_t *jeu, int joueur, int tour, int nbr_simulations)
 {
     // On cherche la meilleure des actions possibles pour joueur
     // D'abord, on initialise deux listes : une qui compte le nombre de succès par pion et direction possible et par direction du bobail, et une qui compte le nombre de coups tentés dans cette direction.
@@ -37,7 +37,7 @@ int MCTS(jeu_t *jeu, int joueur, int tour)
 
     // on explore 1000000 fois chaque branche pour voir si "en moyenne", ce coup amène à perdre ou gagner
     // le nombre 1000000 est arbitraire, grand pour que ca soit representatif mais pas trop grand pour limiter le temps d'execution
-    for (int i = 0; i < 1000000; i++)
+    for (int i = 0; i < nbr_simulations; i++)
     {                                  // peut etre plutot explorer un certain nombre de fois chaque branche (2000 fois) ?
         copy_jeu(jeu, jeu_provisoire); // on retourne à l'état initial
         int joueur_provisoire = joueur;
@@ -182,7 +182,7 @@ int MCTS_improved(jeu_t *jeu, int joueur, int tour) {
         printf("\nDebut coup %d\n",indice_coup) ;
         copy_jeu(jeu,jeu_provisoire) ;
         jouer_coup(jeu_provisoire, joueur, indice_coup) ;
-        int coup_adversaire = MCTS(jeu_provisoire, joueur%2 +1, tour) ;
+        int coup_adversaire = MCTS(jeu_provisoire, joueur%2 +1, tour,10000) ;
         printf("MCTS adversaire %d\n", coup_adversaire)  ;
         jouer_coup(jeu_provisoire, joueur%2 +1, coup_adversaire) ;
         

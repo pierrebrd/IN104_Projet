@@ -46,7 +46,7 @@ void jeuIAvIA()
     {
         ++tour;
 
-        int indice_coup = MCTS(jeu, joueuractuel, tour); // l'IA joue choisit le meilleur coup
+        int indice_coup = MCTS(jeu, joueuractuel, tour,1000000); // l'IA joue choisit le meilleur coup
         // Il faut maintenant jouer le coup
         jouer_coup(jeu, joueuractuel, indice_coup);
         printf("IA %d, tour %d ↓\n", joueuractuel, tour);

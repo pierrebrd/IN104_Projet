@@ -9,7 +9,7 @@
 int explore_aleatoire(jeu_t *jeu_provisoire, int joueur, int tour);
 /* effectue plusieurs coups aléatoire jusqu'à arriver à la fin du jeu, renvoie 1 ou 2 en fonction du gagnant et 0 si le jeu est bloqué */
 
-int MCTS(jeu_t *jeu, int joueur, int tour);
+int MCTS(jeu_t *jeu, int joueur, int tour, int nbr_simulations);
 /* Renvoie un coup à jouer en utilisant la méthode de MCTS
 Le coup est repéré par la méthode d'indiciation suivante :
 Indice d'un coup possible: 40*direction_bobail + 8*nb_pion%5 + direction_pion
