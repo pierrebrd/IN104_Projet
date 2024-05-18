@@ -82,7 +82,8 @@ int MCTS(jeu_t *jeu, int joueur, int tour, int nbr_simulations)
             ind_max = i;
         }
     }
-    // printf("Meilleur coup : %d\n", ind_max); // ligne dev, à supprimer dans la version utilisateur
+    // printf("Meilleur coup joueur %d : %d\n", joueur, ind_max); // ligne dev, à supprimer dans la version utilisateur
+    destruction(jeu_provisoire);
     return ind_max;
 }
 
@@ -164,7 +165,7 @@ int MCTS_improved_marche_pas(jeu_t *jeu, int joueur, int tour, int anticipation)
             ind_max = i;
         }
     }
-    printf("Meilleur coup : %d\n", ind_max); // ligne dev, à supprimer dans la version utilisateur
+    printf("Meilleur coup joueur %d : %d\n", joueur, ind_max); // ligne dev, à supprimer dans la version utilisateur
     return ind_max;
 }
 
@@ -182,15 +183,19 @@ int MCTS_improved(jeu_t *jeu, int joueur, int tour)
 
             copy_jeu(jeu, jeu_provisoire);
             jouer_coup(jeu_provisoire, joueur, indice_coup);
+            // printf("On cherche le coup de l'adversaire\n");
             int coup_adversaire = MCTS(jeu_provisoire, joueur % 2 + 1, tour + 1, 10000);
             jouer_coup(jeu_provisoire, joueur % 2 + 1, coup_adversaire);
 
             // peut-être que la boucle qui suit pourrait se faire directement en faisant appel à MCTS, ce qui permettrait de génaraliser à d'autres niveaux de récursivité
             // update : non en fait pas du tout je dis n'importe quoi
+            // printf("On explore notre coup\n");
             int nb_explorations = 10000;
+            jeu_t *jeu_provisoire2 = initialisation();
             for (int i = 0; i < nb_explorations; i++)
             {
-                int gagnant = explore_aleatoire(jeu_provisoire, joueur, tour + 2);
+                copy_jeu(jeu_provisoire, jeu_provisoire2);
+                int gagnant = explore_aleatoire(jeu_provisoire2, joueur, tour + 2);
 
                 if (gagnant == joueur)
                 {
@@ -200,8 +205,10 @@ int MCTS_improved(jeu_t *jeu, int joueur, int tour)
 
             ratio[indice_coup] = (double)nb_succes[indice_coup] / nb_explorations;
         }
-
-        ratio[indice_coup] = -1; // le coup est illégal ! On mets -1 car si on met 0, on risque de le choisir par erreur si tous les coups légaux sont perdants donc auront un ratio de 0 également
+        else
+        {
+            ratio[indice_coup] = -1; // le coup est illégal ! On mets -1 car si on met 0, on risque de le choisir par erreur si tous les coups légaux sont perdants donc auront un ratio de 0 également
+        }
     }
 
     // On chosit le coup avec le meilleur ratio
@@ -209,6 +216,7 @@ int MCTS_improved(jeu_t *jeu, int joueur, int tour)
     double max = 0;
     for (int i = 0; i < 360; i++)
     {
+        // printf("ratio coup %d : %f\n", i, ratio[i]);
         if (ratio[i] >= max)
         {
             max = ratio[i];
