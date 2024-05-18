@@ -37,7 +37,7 @@ void jeu1vIA_aleatoire()
     int tour = 0;
     int joueuractuel = 1;
     afficher(jeu);
-    while (victoire(jeu) == 0) // tant qu'aucun joueur n'a gagné
+    while (victoire(jeu, joueuractuel) == 0) // tant qu'aucun joueur n'a gagné
     {
         ++tour;
 
@@ -49,7 +49,7 @@ void jeu1vIA_aleatoire()
                 coup(jeu, 3);
                 afficher(jeu);
             }
-            if (victoire(jeu) == 0)
+            if (victoire(jeu, joueuractuel) == 0)
             { // on bouge un pion sauf si la partie est déjà gagnée
                 printf("Humain, bougez un de vos pions.\n");
                 coup(jeu, joueuractuel);
@@ -68,5 +68,5 @@ void jeu1vIA_aleatoire()
 
         joueuractuel = 1 + joueuractuel % 2;
     }
-    printf("Le joueur %d a gagné en %d tours !\n\n\n", victoire(jeu), tour);
+    printf("Le joueur %d a gagné en %d tours !\n\n\n", victoire(jeu, joueuractuel), tour);
 }

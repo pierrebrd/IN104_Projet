@@ -283,7 +283,7 @@ void jouer_coup(jeu_t *jeu, int joueur, int indice_coup)
     jeu->y_pions[10] = y + jj;
 
     // on bouge maitenant le pion, si la partie n'est pas gagnée
-    if (victoire(jeu) == 0)
+    if (victoire(jeu, joueur) == 0)
     {
         ii = 0;
         jj = 0;

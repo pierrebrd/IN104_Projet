@@ -20,7 +20,7 @@ void jeuIAvIA_aleatoire()
     int tour = 0;
     int joueuractuel = 1;
     afficher(jeu);
-    while (victoire(jeu) == 0) // tant qu'aucun joueur n'a gagné
+    while (victoire(jeu, joueuractuel) == 0) // tant qu'aucun joueur n'a gagné
     {
         ++tour;
 
@@ -32,7 +32,7 @@ void jeuIAvIA_aleatoire()
         joueuractuel = 1 + joueuractuel % 2;
     }
 
-    printf("L'IA %d a gagné en %d tours !\n\n\n", victoire(jeu), tour);
+    printf("L'IA %d a gagné en %d tours !\n\n\n", victoire(jeu, joueuractuel), tour);
 }
 
 void jeuIAvIA()
@@ -42,11 +42,11 @@ void jeuIAvIA()
     int tour = 0;
     int joueuractuel = 1;
     afficher(jeu);
-    while (victoire(jeu) == 0) // tant qu'aucun joueur n'a gagné
+    while (victoire(jeu, joueuractuel) == 0) // tant qu'aucun joueur n'a gagné
     {
         ++tour;
 
-        int indice_coup = MCTS(jeu, joueuractuel, tour,1000000); // l'IA joue choisit le meilleur coup
+        int indice_coup = MCTS(jeu, joueuractuel, tour, 1000000); // l'IA joue choisit le meilleur coup
         // Il faut maintenant jouer le coup
         jouer_coup(jeu, joueuractuel, indice_coup);
         printf("IA %d, tour %d ↓\n", joueuractuel, tour);
@@ -55,7 +55,7 @@ void jeuIAvIA()
         joueuractuel = 1 + joueuractuel % 2;
     }
 
-    printf("L'IA %d a gagné en %d tours !\n\n\n", victoire(jeu), tour);
+    printf("L'IA %d a gagné en %d tours !\n\n\n", victoire(jeu, joueuractuel), tour);
 }
 
 void jeuIAvIA_improved()
@@ -66,12 +66,12 @@ void jeuIAvIA_improved()
     int joueuractuel = 1;
 
     afficher(jeu);
-    while (victoire(jeu) == 0) // tant qu'aucun joueur n'a gagné
+    while (victoire(jeu, joueuractuel) == 0) // tant qu'aucun joueur n'a gagné
     {
         ++tour;
         int indice_coup = MCTS_improved(jeu, joueuractuel, tour); // l'IA joue choisit le meilleur coup
-        //int indice_coup = 5 ; // DEBUGGAGE
-        // Il faut maintenant jouer le coup
+        // int indice_coup = 5 ; // DEBUGGAGE
+        //  Il faut maintenant jouer le coup
         jouer_coup(jeu, joueuractuel, indice_coup);
         printf("IA %d, tour %d ↓\n", joueuractuel, tour);
         afficher(jeu); // on affiche la grille
@@ -79,5 +79,5 @@ void jeuIAvIA_improved()
         joueuractuel = 1 + joueuractuel % 2;
     }
 
-    printf("L'IA %d a gagné en %d tours !\n\n\n", victoire(jeu), tour);
+    printf("L'IA %d a gagné en %d tours !\n\n\n", victoire(jeu, joueuractuel), tour);
 }
