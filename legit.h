@@ -12,7 +12,7 @@ du type du pion
 renvoie 0 si déplacement correct, ou des codes d'erreur de 1 à 6 en fonction du problème si le déplacement est impossible
 */
 
-int legit_direction(jeu_t *jeu, int indice_coup);
+int legit_direction(jeu_t *jeu, int indice_coup, int joueur, int tour);
 /*
 Détermine s'il est possible de jouer le coup, ie si le bobail peut se dépacer d'une case selon direction_bobail et si le pion peut se déplacer d'au moins une case selon direction_pion.
 

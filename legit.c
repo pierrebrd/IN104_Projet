@@ -193,7 +193,7 @@ int legit(jeu_t *jeu, int ia, int ja, int ib, int jb, int type_pion)
 }
 
 
-int legit_direction(jeu_t *jeu, int indice_coup) {
+int legit_direction(jeu_t *jeu, int indice_coup, int joueur, int tour) {
     // Extraire les infos de indice_coup
     int direction_bobail = indice_coup / 40;
     int nb_pion = (indice_coup % 40) / 8 + 5 * (joueur - 1);
@@ -239,6 +239,11 @@ int legit_direction(jeu_t *jeu, int indice_coup) {
         case RIEN:
             break;
         }
+
+    // Au premier tour, le bobail ne peut pas bouger (direction = 8)
+    if( tour == 1 && direction_bobail != 8) {
+        return 1 ;
+    }
 
 
     // Check si le déplcament du bobail est valide
