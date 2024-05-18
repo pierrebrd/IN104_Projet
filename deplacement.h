@@ -7,7 +7,7 @@
 #include "initialisation.h"
 
 void changement_position(jeu_t *jeu, int *pos, int type_pion);
-/*Change la position d'un pion dans x_pions et y_pions*/
+/*Change la position d'un pion dans x_pions et y_pions à partir de son ancienne et sa nouvelle posistion, représentées dans la liste de 4 entiers pos*/
 
 int input(int *pos);
 /*Prend en argument un tableau de 4 entiers,
@@ -35,8 +35,9 @@ RETURN VALUES
 void jouer_coup(jeu_t *jeu, int joueur, int indice_coup);
 /*Joue un coup indicé de la manière suivante comprise entre 0 et 360:
 40*direction_bobail + 8*nb_pion%5 + direction_pion
+La fonction ne vérifie pas si le coup est légal
 
-Pour retrouver de manière explicite : 
+Pour retrouver de manière explicite :
 direction_bobail = indice_coup / 40;
 nb_pion = (indice_coup % 40) / 8 + 5 * (joueur - 1);
 direction_pion = indice_coup % 8;
@@ -44,6 +45,6 @@ direction_pion = indice_coup % 8;
 ARGUMENT
 jeu_t *jeu : état actuel du jeu
 int joueur : numéro du joueur, 1 ou 2
-int indice_coup : indice repérant le coup à jouer, décrit ci dessus 
+int indice_coup : indice repérant le coup à jouer, décrit ci dessus
 
 */

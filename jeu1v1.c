@@ -12,11 +12,11 @@
 
 void jeu1v1()
 {
-    regles() ;
+    regles();
     jeu_t *jeu = initialisation();
     int tour = 0;
     int joueuractuel = 1;
-    while (victoire(jeu) == 0) // tant qu'aucun joueur n'a gagné
+    while (victoire(jeu, joueuractuel) == 0) // tant qu'aucun joueur n'a gagné
     {
         ++tour;
         if (tour != 1) // au premier tour, on ne bouge pas le bobail
@@ -25,7 +25,7 @@ void jeu1v1()
             printf("Joueur %d, à vous de jouer ! Bougez le Bobail.\n", joueuractuel);
             coup(jeu, 3);
         }
-        if (victoire(jeu) == 0)
+        if (victoire(jeu, joueuractuel) == 0)
         {
             afficher(jeu);
             printf("Joueur %d, bougez un de vos pions.\n", joueuractuel);
@@ -35,5 +35,5 @@ void jeu1v1()
         joueuractuel = 1 + joueuractuel % 2;
     }
     afficher(jeu);
-    printf("Le joueur %d a gagné en %d tours !\n\n\n", victoire(jeu), tour);
+    printf("Le joueur %d a gagné en %d tours !\n\n\n", victoire(jeu, joueuractuel), tour);
 }

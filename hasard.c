@@ -25,13 +25,13 @@ int coup_hasard(jeu_t *jeu, int joueur, int tour)
     int direction_bobail = 8; // si il ne bouge pas, sa direction est 8
     if (tour != 1)
     { // on doit bouger le bobail aléatoirement
-        // emplacement bobail
+        // on récupère l'emplacement bobail
         int x = jeu->x_pions[10];
         int y = jeu->y_pions[10];
 
         // choix d'une direction
 
-        int ii;
+        int ii; // initialisation des incréments pour la direction
         int jj;
         do
         { // on cherche une direction aléatoirement
@@ -72,7 +72,7 @@ int coup_hasard(jeu_t *jeu, int joueur, int tour)
                 break;
             }
 
-        } while (legit(jeu, x, y, x + ii, y + jj, 3) != 0); // on continue à chercher tant que la direction n'est pas valide
+        } while (legit(jeu, x, y, x + ii, y + jj, 3) != 0); // on continue à chercher tant que la direction n'est pas valide, c'est-à-dire tant que la case ou se déplace le bobail n'est pas vide
         jeu->grille[x][y] = 0;
         jeu->grille[x + ii][y + jj] = 3;
         jeu->x_pions[10] = x + ii;
@@ -82,7 +82,7 @@ int coup_hasard(jeu_t *jeu, int joueur, int tour)
     // maintenant, on bouge un pion si l'on n'a pas encore gagné
     int nb_pion = 0; // initialisation avant de rentrer dans la boucle
     int direction = 0;
-    if (victoire(jeu) == 0)
+    if (victoire(jeu, joueur) == 0)
     {
         int nb_recherches = 0; // on ne veut pas boucler à l'infini
         int pas;               // Cette variable va nous servir pour savoir si le pion et la direction ne sont pas bloquées, auquel cas il vaudra 0 à la fin de la boucle suivante
@@ -154,7 +154,7 @@ int coup_hasard(jeu_t *jeu, int joueur, int tour)
                 return 404; // code qui est renvoyé lorsque le jeu est bloqué
             }
 
-        } while (pas == 0); // la direction ne nous permet pas d'avancer, on va rechercher un nouveau pion et une nouvelle direction
+        } while (pas == 0); // si pas==0, c'est que la direction ne nous permet pas d'avancer, on va rechercher un nouveau pion et une nouvelle direction
 
         // Il ne nous reste plus qu'à enregistrer la nouvelle position
         jeu->grille[x][y] = 0;
@@ -166,9 +166,3 @@ int coup_hasard(jeu_t *jeu, int joueur, int tour)
     // printf("%d\n", 40 * direction_bobail + 8 * (nb_pion % 5) + direction);
     return (40 * direction_bobail + 8 * (nb_pion % 5) + direction); // On en a besoin dans l'implémentation de MCTS
 }
-
-// maybe implémenter le fait que bouger aléatoirement c'est bête ? genre on essate toujours de à peu près déplacer le bobail vers notre coté et pas vers l'adversaire ?
-
-// on reprend beaucoup d'éléments de legit.c, peut etre dans legit.c directement faire une fonction qui prend en argument une direction plutot qu'une position et renvoie si c'est okay
-
-// PB !!!! on est bloqué et on ne trouve pas de solutions

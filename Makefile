@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -Werror 
+CFLAGS= -Wall -Werror -O2 # -O2 permet d'optimiser le code, et surtout de trouver des erreurs qu'on ne trouve pas sans
 LDFLAGS=
 FILES=initialisation.o affichage.o deplacement.o legit.o jeu1v1.o jeuIAvIA.o jeu1vIA.o victoire.o hasard.o IA.o UX.o
 # FILESs contient tous les fichiers .o nécessaires pour compiler l'ensemble des programmes
