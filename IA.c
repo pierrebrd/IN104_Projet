@@ -29,6 +29,11 @@ int explore_aleatoire(jeu_t *jeu_provisoire, int joueur, int tour)
 
 int MCTS(jeu_t *jeu, int joueur, int tour, int nbr_simulations)
 {
+    if (victoire(jeu, joueur) != 0)
+    {
+        printf("jeu gagné\n");
+        return 404; // le jeu est déja gagné, on renvoie une erreur
+    }
     // On cherche la meilleure des actions possibles pour joueur
     // D'abord, on initialise deux listes : une qui compte le nombre de succès par pion et direction possible et par direction du bobail, et une qui compte le nombre de coups tentés dans cette direction.
     // Si la direction est bloquée, on utilise -1 dans la première liste
@@ -185,7 +190,10 @@ int MCTS_improved(jeu_t *jeu, int joueur, int tour)
             jouer_coup(jeu_provisoire, joueur, indice_coup);
             // printf("On cherche le coup de l'adversaire\n");
             int coup_adversaire = MCTS(jeu_provisoire, joueur % 2 + 1, tour + 1, 10000);
-            jouer_coup(jeu_provisoire, joueur % 2 + 1, coup_adversaire);
+            if (coup_adversaire != 404) // si la partie était déja gagné, on ne joue pas
+            {
+                jouer_coup(jeu_provisoire, joueur % 2 + 1, coup_adversaire);
+            }
 
             // peut-être que la boucle qui suit pourrait se faire directement en faisant appel à MCTS, ce qui permettrait de génaraliser à d'autres niveaux de récursivité
             // update : non en fait pas du tout je dis n'importe quoi

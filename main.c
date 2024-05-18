@@ -16,8 +16,9 @@
 
 int main()
 {
-    printf("\nBienvenue dans le jeu de Bobail !\n\nLe Bobail se joue à deux joeurs. Choisissez votre mode de jeu.\nDeux joueurs : 1\nUn joueur contre une IA: 2\nDeux IA : 3\nVotre choix : ");
+    printf("\nBienvenue dans le jeu de Bobail !\n\nLe Bobail se joue à deux joeurs. Choisissez votre mode de jeu.\n1 : Deux joueurs\n2 : Un joueur contre une IA\n3 : Deux IAs\nVotre choix : ");
     int mode_jeu = 0;
+    int anticipation = 0;
     scanf("%d", &mode_jeu);
     printf("\n");
     switch (mode_jeu)
@@ -26,7 +27,7 @@ int main()
         jeu1v1();
         break;
     case 2: // 1vIA, on chosisit le niveau de difficulté
-        printf("Choisissez le niveau de difficulté de l'IA :\n0: l'IA joue complétement alétoirement\n1 : L'IA utilise un algorithme MCTS classique pour trouver le meilleur coup\n2 : L'IA utilise MCTS avec récursivité pour jouer plus intelligement\nVotre choix : ");
+        printf("Choisissez le niveau de difficulté de l'IA :\n0 : l'IA joue complétement alétoirement\n1 : L'IA utilise un algorithme MCTS classique pour trouver le meilleur coup\n2 : L'IA utilise MCTS avec récursivité pour jouer plus intelligement\nVotre choix : ");
         int anticipation = 0;
         // Pour l'instant, l'anticipation est au maximum de 2
         scanf("%d", &anticipation);
@@ -50,7 +51,6 @@ int main()
         break;
     case 3: // IA contre IA
         printf("Choisissez le niveau de difficulté de l'IA :\n0: l'IA joue complétement alétoirement\n1 : L'IA utilise un algorithme MCTS classique pour trouver le meilleur coup\n2 : L'IA utilise MCTS avec récursivité pour jouer plus intelligement\nVotre choix : ");
-        int anticipation = 0;
         // Pour l'instant, l'anticipation est au maximum de 2
         scanf("%d", &anticipation);
         printf("\n");
