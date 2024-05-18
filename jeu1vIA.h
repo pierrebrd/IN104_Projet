@@ -7,6 +7,13 @@
 #include "legit.h"
 #include "initialisation.h"
 #include "victoire.h"
+#include "IA.h"
 
 void jeu1vIA_aleatoire();
 /* permet  de joueur contre un ordinateur, qui joue des coups complètement aléatoires */
+
+void jeu1vIA();
+/* permet de joueur contre un ordinateur, qui joue des coups en utilisant l'algorithme MCTS */
+
+void jeu1vIA_improved();
+/* permet de joueur contre un ordinateur, qui joue des coups en utilisant l'algorithme MCTS récursif */
