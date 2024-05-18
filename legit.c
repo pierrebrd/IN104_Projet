@@ -192,74 +192,85 @@ int legit(jeu_t *jeu, int ia, int ja, int ib, int jb, int type_pion)
     }
 }
 
-
-int legit_direction(jeu_t *jeu, int indice_coup, int joueur, int tour) {
+int legit_direction(jeu_t *jeu, int indice_coup, int joueur, int tour)
+{
     // Extraire les infos de indice_coup
     int direction_bobail = indice_coup / 40;
     int nb_pion = (indice_coup % 40) / 8 + 5 * (joueur - 1);
     int direction_pion = indice_coup % 8;
     // Extraire les positions du bobail et du pion
-    int abs_bobail = jeu->x_pions[10] ;
-    int ord_bobail = jeu->y_pions[10] ;
-    int abs_pion = jeu->x_pions[nb_pion] ;
-    int ord_pion = jeu->y_pions[nb_pion] ;
-
-    // Selon la direction, on détermine commment vont changer l'abscisse et l'ordonnée 
-    int i_shift = 0;
-    int j_shift = 0;
-    switch (direction_bobail) {
-        case SUD:
-            i_shift = 1;
-            break;
-        case NORD:
-            i_shift = -1;
-            break;
-        case EST:
-            j_shift = 1;
-            break;
-        case OUEST:
-            j_shift = -1;
-            break;
-        case NORDOUEST:
-            i_shift = -1;
-            j_shift = -1;
-            break;
-        case NORDEST:
-            i_shift = -1;
-            j_shift = 1;
-            break;
-        case SUDEST:
-            i_shift = 1;
-            j_shift = 1;
-            break;
-        case SUDOUEST:
-            i_shift = 1;
-            j_shift = -1;
-            break;
-        case RIEN:
-            break;
-        }
+    int abs_bobail = jeu->x_pions[10];
+    int ord_bobail = jeu->y_pions[10];
+    int abs_pion = jeu->x_pions[nb_pion];
+    int ord_pion = jeu->y_pions[nb_pion];
 
     // Au premier tour, le bobail ne peut pas bouger (direction = 8)
-    if( tour == 1 && direction_bobail != 8) {
-        return 1 ;
+    if (tour == 1 && direction_bobail != 8)
+    {
+        return 1;
+    }
+    else if (tour > 1 && direction_bobail == 8)
+    {
+        // Si le tour est plus grand que 1 mais le coup ne fait pas bouger le bobail, il n'est pas valide
+        return 1;
     }
 
+    // Selon la direction, on détermine commment vont changer l'abscisse et l'ordonnée
+    int i_shift = 0;
+    int j_shift = 0;
+    switch (direction_bobail)
+    {
+    case SUD:
+        i_shift = 1;
+        break;
+    case NORD:
+        i_shift = -1;
+        break;
+    case EST:
+        j_shift = 1;
+        break;
+    case OUEST:
+        j_shift = -1;
+        break;
+    case NORDOUEST:
+        i_shift = -1;
+        j_shift = -1;
+        break;
+    case NORDEST:
+        i_shift = -1;
+        j_shift = 1;
+        break;
+    case SUDEST:
+        i_shift = 1;
+        j_shift = 1;
+        break;
+    case SUDOUEST:
+        i_shift = 1;
+        j_shift = -1;
+        break;
+    case RIEN:
+        break;
+    }
 
-    // Check si le déplcament du bobail est valide
-    if (abs_bobail + i_shift >= 0 && abs_bobail + i_shift <= 4 && ord_bobail + j_shift >= 0 && ord_bobail + j_shift <= 4 ) { // si le bobail reste dans la grille
-        if( jeu->grille[abs_bobail + i_shift][ord_bobail + j_shift] != 0) {
-        return 1 ; // si le bobail va dans une case occupée
+    // Check si le déplacement du bobail est valide
+    if (abs_bobail + i_shift >= 0 && abs_bobail + i_shift <= 4 && ord_bobail + j_shift >= 0 && ord_bobail + j_shift <= 4)
+    { // si le bobail reste dans la grille
+        if (jeu->grille[abs_bobail + i_shift][ord_bobail + j_shift] != 0)
+        {
+            return 1; // si le bobail va dans une case occupée
         }
     }
     // Check si le déplcament du pion est valide
-    else if (abs_pion + i_shift >= 0 && abs_pion+ i_shift <= 4 && ord_pion + j_shift >= 0 && ord_pion+ j_shift <= 4 ) { // si le pion reste dans la grille
-        if( jeu->grille[abs_pion + i_shift][ord_pion + j_shift] != 0) {
-        return 1 ; // si le pion va dans une case occupée
+    else if (abs_pion + i_shift >= 0 && abs_pion + i_shift <= 4 && ord_pion + j_shift >= 0 && ord_pion + j_shift <= 4)
+    { // si le pion reste dans la grille
+        if (jeu->grille[abs_pion + i_shift][ord_pion + j_shift] != 0)
+        {
+            return 1; // si le pion va dans une case occupée
         }
     }
-    else { // le bobail ou le pion est sorti de la grille 
-        return 1 ; // le bobail ou le pion est sorti de la grille 
+    else
+    {             // le bobail ou le pion est sorti de la grille
+        return 1; // le bobail ou le pion est sorti de la grille
     }
-    return 0 ; // personne sort de la grille, personne ne va sur une case occupée
+    return 0; // personne sort de la grille, personne ne va sur une case occupée
 }
