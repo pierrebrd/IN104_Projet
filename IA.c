@@ -176,12 +176,10 @@ int MCTS_improved_marche_pas(jeu_t *jeu, int joueur, int tour, int anticipation)
 
 int MCTS_improved(jeu_t *jeu, int joueur, int tour)
 {
-    
+
     int nb_succes[360] = {0}; // Indice d'un coup possible: 40*direction_bobail + 8*nb_pion%5 + direction_pion,
     jeu_t *jeu_provisoire = initialisation();
     double ratio[360] = {0};
-    for (int indice_coup = 0; indice_coup < 360; indice_coup++)
-
     for (int indice_coup = 0; indice_coup < 360; indice_coup++)
     {
         if (legit_direction(jeu, indice_coup, joueur, tour) == 0)
@@ -195,39 +193,31 @@ int MCTS_improved(jeu_t *jeu, int joueur, int tour)
             {
                 jouer_coup(jeu_provisoire, joueur % 2 + 1, coup_adversaire);
             }
-
-            int nb_explorations = 10000;
-            for (int i = 0; i < nb_explorations; i++)
-            {
-                int gagnant = explore_aleatoire(jeu_provisoire, joueur, tour + 2);
             // peut-être que la boucle qui suit pourrait se faire directement en faisant appel à MCTS, ce qui permettrait de génaraliser à d'autres niveaux de récursivité
             // update : non en fait pas du tout je dis n'importe quoi
             // printf("On explore notre coup\n");
-                int nb_explorations = 10000;
-                jeu_t *jeu_provisoire2 = initialisation();
-                for (int i = 0; i < nb_explorations; i++)
+            int nb_explorations = 10000;
+            jeu_t *jeu_provisoire2 = initialisation();
+            for (int i = 0; i < nb_explorations; i++)
+            {
+                copy_jeu(jeu_provisoire, jeu_provisoire2);
+                int gagnant = explore_aleatoire(jeu_provisoire2, joueur, tour + 2);
+
+                if (gagnant == joueur)
                 {
-                    copy_jeu(jeu_provisoire, jeu_provisoire2);
-                    int gagnant = explore_aleatoire(jeu_provisoire2, joueur, tour + 2);
-
-                    if (gagnant == joueur)
-                    {
-                        nb_succes[indice_coup]++; // On a gagné !
-                    }
+                    nb_succes[indice_coup]++; // On a gagné !
                 }
+            }
 
-                ratio[indice_coup] = (double)nb_succes[indice_coup] / nb_explorations;
-            } // ferme le for
-        } // ferme le if
+            ratio[indice_coup] = (double)nb_succes[indice_coup] / nb_explorations;
+        }
 
         else
         {
             ratio[indice_coup] = -1; // le coup est illégal ! On mets -1 car si on met 0, on risque de le choisir par erreur si tous les coups légaux sont perdants donc auront un ratio de 0 également
         }
-        
-      
     }
-    printf("ratio\n") ;
+    printf("ratio\n");
     // On chosit le coup avec le meilleur ratio
     int ind_max = 0;
     double max = 0;
