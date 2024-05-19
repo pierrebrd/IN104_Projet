@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+#include "legit.h"
+#include "victoire.h"
 #include "initialisation.h"
 
 int coup_hasard(jeu_t *jeu, int joueur, int tour);

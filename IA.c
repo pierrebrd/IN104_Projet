@@ -1,11 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
-
-#include "initialisation.h"
 #include "IA.h"
-#include "deplacement.h"
-#include "legit.h"
 
 int explore_aleatoire(jeu_t *jeu_provisoire, int joueur, int tour)
 {

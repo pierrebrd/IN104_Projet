@@ -1,17 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
-#include <unistd.h> //pour utiliser sleep
-#include <time.h>   //pour initialiser le random
-
 #include "jeuIAvIA.h"
-#include "deplacement.h"
-#include "affichage.h"
-#include "legit.h"
-#include "initialisation.h"
-#include "victoire.h"
-#include "hasard.h"
-#include "IA.h"
 
 int jeuIAvIA_aleatoire()
 {

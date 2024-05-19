@@ -2,9 +2,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-// On va créer un struct pour gérer l'état actuel du jeu, qui contiendra la grille ainsi que la liste des positions des pions et du bobail
-
-#ifndef STRUCT_DEJA_INCLUS // On ne recrée pas le struct si il a déja été crée lors d'une précendente inclusion de initialisation.h
+#ifndef STRUCT_DEJA_INCLUS // On ne recrée pas le struct et l'enum des directions si ils ont déja étés crées lors d'une précendente inclusion de initialisation.h
 #define STRUCT_DEJA_INCLUS
 
 typedef struct jeu_t
@@ -13,6 +11,19 @@ typedef struct jeu_t
     int *x_pions; // contient les positions x des pions du joueur 1, puis du joueur 2, puis du bobail (liste de taille 11)
     int *y_pions;
 } jeu_t;
+
+typedef enum
+{
+    NORD,
+    SUD,
+    OUEST,
+    EST,
+    NORDOUEST,
+    NORDEST,
+    SUDOUEST,
+    SUDEST,
+    RIEN
+} direction_t;
 
 #endif
 
@@ -41,7 +52,7 @@ jeu_t *jeu : struct qui contient une matrice int** correspondant à l'occupation
 VALEURS DE RETOUR
 void*/
 
-void copy_jeu (jeu_t* old_jeu, jeu_t* new_jeu) ;
+void copy_jeu(jeu_t *old_jeu, jeu_t *new_jeu);
 /*Copie les valeurs de old_jeu dans le strcut new_jeu. On ne peut pas copier directement le struct parce que cela revient juste à créer un second pointeur vers la même adresse
 
 ARGUMENTS

@@ -1,11 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
-
-#include "affichage.h"
-#include "initialisation.h"
-#include "deplacement.h"
-#include "legit.h"
+#include "victoire.h"
 
 int victoire(jeu_t *jeu, int joueur)
 {

@@ -1,24 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
-#include <string.h>
-
-#include "legit.h"
-#include "initialisation.h"
-#include "victoire.h"
-
-typedef enum
-{
-    NORD,
-    SUD,
-    OUEST,
-    EST,
-    NORDOUEST,
-    NORDEST,
-    SUDOUEST,
-    SUDEST,
-    RIEN
-} direction_t;
+#include "deplacement.h"
 
 void changement_position(jeu_t *jeu, int *pos, int type_pion)
 
