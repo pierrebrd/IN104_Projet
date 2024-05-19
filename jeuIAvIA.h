@@ -16,3 +16,8 @@ void jeuIAvIA();
 
 void jeuIAvIA_improved();
 /* permet  de regarder deux ordinateurs jouer encore plus intelligement, avec l'algorithme MCTS récursif */
+
+int jeuIAvIA_comparaison(int joueurIAclassique);
+/* permet de comparer les performances des deux algorithmes MCTS. le joueur joueurIAclassique joue avec MCTS et l'autre joue avec MCTS récursif
+la fonction renvoie le gagnant de la partie, et stoppe la partie au bout de 100 itérations si elle n'est pas finie (elle renvoie alors 0)
+*/

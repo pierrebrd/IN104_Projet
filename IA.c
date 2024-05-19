@@ -229,6 +229,6 @@ int MCTS_improved(jeu_t *jeu, int joueur, int tour)
             ind_max = i;
         }
     }
-    printf("Meilleur coup : %d\n", ind_max); // ligne dev, à supprimer dans la version utilisateur
+    // printf("Meilleur coup : %d\n", ind_max); // ligne dev, à supprimer dans la version utilisateur
     return ind_max;
 }
