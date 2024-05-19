@@ -184,8 +184,6 @@ int MCTS_improved(jeu_t *jeu, int joueur, int tour)
 
     for (int indice_coup = 0; indice_coup < 360; indice_coup++)
     {
-        if (legit_direction(jeu,indice_coup,joueur, tour) == 0) { // si le coup est légal
-            printf("coup %d légal\n", indice_coup) ;
         if (legit_direction(jeu, indice_coup, joueur, tour) == 0)
         { // si le coup est légal
 
@@ -205,26 +203,23 @@ int MCTS_improved(jeu_t *jeu, int joueur, int tour)
             // peut-être que la boucle qui suit pourrait se faire directement en faisant appel à MCTS, ce qui permettrait de génaraliser à d'autres niveaux de récursivité
             // update : non en fait pas du tout je dis n'importe quoi
             // printf("On explore notre coup\n");
-            int nb_explorations = 10000;
-            jeu_t *jeu_provisoire2 = initialisation();
-            for (int i = 0; i < nb_explorations; i++)
-            {
-                copy_jeu(jeu_provisoire, jeu_provisoire2);
-                int gagnant = explore_aleatoire(jeu_provisoire2, joueur, tour + 2);
-
-                if (gagnant == joueur)
+                int nb_explorations = 10000;
+                jeu_t *jeu_provisoire2 = initialisation();
+                for (int i = 0; i < nb_explorations; i++)
                 {
-                    nb_succes[indice_coup]++; // On a gagné !
-                }
-            }
+                    copy_jeu(jeu_provisoire, jeu_provisoire2);
+                    int gagnant = explore_aleatoire(jeu_provisoire2, joueur, tour + 2);
 
-            ratio[indice_coup] = (double)nb_succes[indice_coup] / nb_explorations;
+                    if (gagnant == joueur)
+                    {
+                        nb_succes[indice_coup]++; // On a gagné !
+                    }
+                }
+
+                ratio[indice_coup] = (double)nb_succes[indice_coup] / nb_explorations;
+            } // ferme le for
         } // ferme le if
-        else {
-            printf("coup %d illégal\n", indice_coup) ;
-            ratio[indice_coup] = 0 ; // le coup est illégal !
-            ratio[indice_coup] = (double)nb_succes[indice_coup] / nb_explorations;
-        }
+
         else
         {
             ratio[indice_coup] = -1; // le coup est illégal ! On mets -1 car si on met 0, on risque de le choisir par erreur si tous les coups légaux sont perdants donc auront un ratio de 0 également
