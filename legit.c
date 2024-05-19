@@ -192,8 +192,8 @@ int legit(jeu_t *jeu, int ia, int ja, int ib, int jb, int type_pion)
     }
 }
 
-
-int legit_direction(jeu_t *jeu, int indice_coup, int joueur, int tour) {
+int legit_direction(jeu_t *jeu, int indice_coup, int joueur, int tour)
+{
     // Extraire les infos de indice_coup
     int direction_bobail = indice_coup / 40;
     int nb_pion = (indice_coup % 40) / 8 + 5 * (joueur - 1);
