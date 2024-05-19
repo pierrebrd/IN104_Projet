@@ -70,6 +70,11 @@ int jeuIAvIA_improved()
     afficher(jeu);
     while (victoire(jeu, joueuractuel) == 0) // tant qu'aucun joueur n'a gagné
     {
+        if (tour > 100)
+        {
+            printf("La partie n'est pas finie au bout de 100 tours, on arrête la partie\n");
+            return 0;
+        }
         ++tour;
         int indice_coup = MCTS_improved(jeu, joueuractuel, tour); // l'IA joue choisit le meilleur coup
         //  Il faut maintenant jouer le coup
