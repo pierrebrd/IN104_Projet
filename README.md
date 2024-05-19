@@ -2,7 +2,18 @@
 
 ## MODE D'EMPLOI
 
-Le jeu peut être compilé en éxécutant `make` puis `./main.x` pour lancer le jeu
+Le jeu peut être compilé en éxécutant :
+```
+make
+```
+Puis, pour lancer le jeu :
+```
+./main.x
+```
+On choisit ensuite le mode de jeu et le type d'intelligence artificielle
+
+
+
 
 On peut aussi éxécuter des fichiers test spécifiques à des fins de développement, par exemple :
 
@@ -47,4 +58,8 @@ Les fonctions liées au déplacement se situent dans deplacements.h
 
 ## IA
 
-Nous nous intéressons à la méthode de Monte-Carlo Tree Search (MCTS). Dans la version classique, on explore tous les coups valides du joueur dont c'est le tour de jouer. A partir de ce coup valide, les deux joeurs joue complétement aleatoirement jusqu'à la fin du jeu, et on regarde le résultat. Finalement, après plusieurs centaines de milliers d'explorations, on choisit le coup initial qui donne les meilleurs résultats.
+Nous nous intéressons à la méthode de Monte-Carlo Tree Search (MCTS). Dans la version classique, on explore tous les coups valides du joueur dont c'est le tour de jouer. A partir de ce coup valide, les deux joeurs jouent complétement aleatoirement jusqu'à la fin du jeu, et on regarde le résultat. Finalement, après plusieurs centaines de milliers d'explorations, on choisit le coup initial qui donne les meilleurs résultats.
+
+Nous avons développé une version améliorée en utilisant de la récursivité : Quand le joueur actuel cherche son meilleur coup, plutôt que de tester des parties totalement aléatoires après son coup, on utilise d'abord MCTS pour calculer le meilleur coup de l'adversaire, puis on continue la partie de manière aléatoire.
+
+Pour comparer les 2 IAs, on peut compiler `make test_jeuIAvIA_comparaison.x` et éxécuter `./test_jeuIAvIA_comparaison.x j n` où la valeur de j =1  ou 2 indique si l'IA classique joue en joueur 1 ou 2, et n est le nombre de parties simulées
