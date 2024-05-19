@@ -33,8 +33,19 @@ Initilialise aussi le struct, et le renvoie
 */
 
 void destruction(jeu_t *jeu);
-/*detruit le struct en libérant l'espace mémoire*/
+/*detruit le struct en libérant l'espace mémoire en utilisant free()
+
+ARGUMENTS
+jeu_t *jeu : struct qui contient une matrice int** correspondant à l'occupation de chaque case du plateau de jeu (0 si vide, 1 si pion du joueur 1, 2 si pion du joueur 2, 3 si bobail) ; une liste x_pions contenant les absisses des positions des pions ; une liste int* y_pions contenant les ordonnées des positions des pion (indices 0 à 4 pour joueur 1, 5 à 9 pour joueur 2, 10 pour bobail)
+
+VALEURS DE RETOUR
+void*/
 
 void copy_jeu (jeu_t* old_jeu, jeu_t* new_jeu) ;
-/*On ne peut pas copier directement le struct parce que cela revient juste à créer un second pointeur vers la même adresse
-cette adresse prend en argument le jeu et un struct vide qu'il va remplir */
+/*Copie les valeurs de old_jeu dans le strcut new_jeu. On ne peut pas copier directement le struct parce que cela revient juste à créer un second pointeur vers la même adresse
+
+ARGUMENTS
+jeu_t* old_jeu : ancien jeu à copier. Il s'agit d'un struct qui contient une matrice int** correspondant à l'occupation de chaque case du plateau de jeu (0 si vide, 1 si pion du joueur 1, 2 si pion du joueur 2, 3 si bobail) ; une liste x_pions contenant les absisses des positions des pions ; une liste int* y_pions contenant les ordonnées des positions des pion (indices 0 à 4 pour joueur 1, 5 à 9 pour joueur 2, 10 pour bobail)
+
+jeu_t* new_jeu : struct vierge dans lequel on va copier les valeurs de old_jeu. Il s'agit d'un struct qui contient une matrice int** correspondant à l'occupation de chaque case du plateau de jeu (0 si vide, 1 si pion du joueur 1, 2 si pion du joueur 2, 3 si bobail) ; une liste x_pions contenant les absisses des positions des pions ; une liste int* y_pions contenant les ordonnées des positions des pion (indices 0 à 4 pour joueur 1, 5 à 9 pour joueur 2, 10 pour bobail)
+ */

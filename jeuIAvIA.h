@@ -15,4 +15,4 @@ void jeuIAvIA();
 /* permet  de regarder deux ordinateurs jouer intelligement, en utilisant l'agorithme MCTS classique */
 
 void jeuIAvIA_improved();
-/* permet  de regarder deux ordinateurs jouer encore plus intelligement, avec l'algorithme MCTS récursif */
+/* permet  de regarder deux ordinateurs jouer encore plus intelligement, avec l'algorithme MCTS que nous avons modifié */

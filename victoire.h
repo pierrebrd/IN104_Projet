@@ -8,10 +8,13 @@
 #include "legit.h"
 
 int victoire(jeu_t *jeu, int joueur);
-/*
-Retourne 0 si personne n'a gagné
+/* Dis si le joueur qui s'apprete a jouer a gagné. Si le bobail est bloqué, ce joueur a perdu. Si le bobail est dans la 1er colonne, joueur 1 gagne. SI dans la dernire colonne, joueur 2 gagne
+
+ARGUMENTS
+int joueur : le joueur qui s'apprête à jouer. 
+
+VALEURS DE RETOUR
+0 si personne n'a gagné
 1 si le joueur 1 gagne
 2 si le joueur 2 gagne
-
-int joueur est le joueur qui s'apprête à jouer. Si le bobail est bloqué, int joueur a perdu
 */
