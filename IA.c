@@ -209,8 +209,15 @@ int MCTS_improved(jeu_t *jeu, int joueur, int tour)
             }
             else if (coup_adversaire == 404)
             {
-                // indice_coup est gagnant, on a gagné ! on met 1 dans le ratio de indice_coup
-                ratio[indice_coup] = 1;
+                // indice_coup est pour l'un des deux joueurs ! on vérifie si c'est gagnant nous ou l'adversaire, et on met a jour le ratio
+                if (victoire(jeu_provisoire, joueur % 2 + 1) == joueur)
+                {
+                    ratio[indice_coup] = 1;
+                }
+                else if (victoire(jeu_provisoire, joueur % 2 + 1) == joueur % 2 + 1)
+                {
+                    ratio[indice_coup] = 0;
+                }
             }
         }
 
