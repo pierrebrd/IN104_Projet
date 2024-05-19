@@ -187,39 +187,40 @@ int MCTS_improved_marche_pas(jeu_t *jeu, int joueur, int tour, int anticipation)
 
 int MCTS_improved(jeu_t *jeu, int joueur, int tour)
 {
-    printf("debut version improved\n");
+    
     int nb_succes[360] = {0}; // Indice d'un coup possible: 40*direction_bobail + 8*nb_pion%5 + direction_pion,
     jeu_t *jeu_provisoire = initialisation();
     double ratio[360] = {0};
-
-    for (int indice_coup = 0; indice_coup <= 360; indice_coup++)
+    for (int indice_coup = 0; indice_coup < 360; indice_coup++)
     {
         if (legit_direction(jeu,indice_coup,joueur, tour) == 0) { // si le coup est légal
-
+            printf("coup %d légal\n", indice_coup) ;
             copy_jeu(jeu, jeu_provisoire);
-        jouer_coup(jeu_provisoire, joueur, indice_coup);
-        int coup_adversaire = MCTS(jeu_provisoire, joueur % 2 + 1, tour, 10000);
-        jouer_coup(jeu_provisoire, joueur % 2 + 1, coup_adversaire);
+            jouer_coup(jeu_provisoire, joueur, indice_coup);
+            int coup_adversaire = MCTS(jeu_provisoire, joueur % 2 + 1, tour, 10000);
+            jouer_coup(jeu_provisoire, joueur % 2 + 1, coup_adversaire);
 
-        int nb_explorations = 10000;
-        for (int i = 0; i < nb_explorations; i++)
-        {
-            int gagnant = explore_aleatoire(jeu_provisoire, joueur, tour + 2);
-
-            if (gagnant == joueur)
+            int nb_explorations = 10000;
+            for (int i = 0; i < nb_explorations; i++)
             {
-                nb_succes[indice_coup]++; // On a gagné !
+                int gagnant = explore_aleatoire(jeu_provisoire, joueur, tour + 2);
+
+                if (gagnant == joueur)
+                {
+                    nb_succes[indice_coup]++; // On a gagné !
+                }
             }
-        }
 
-        ratio[indice_coup] = (double)nb_succes[indice_coup] / nb_explorations;
-
+            ratio[indice_coup] = (double)nb_succes[indice_coup] / nb_explorations;
+        } // ferme le if
+        else {
+            printf("coup %d illégal\n", indice_coup) ;
+            ratio[indice_coup] = 0 ; // le coup est illégal !
         }
         
-        ratio[indice_coup] = 0 ; // le coup est illégal !
       
     }
-
+    printf("ratio\n") ;
     // On chosit le coup avec le meilleur ratio
     int ind_max = 0;
     double max = 0;

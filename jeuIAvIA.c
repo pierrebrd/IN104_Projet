@@ -70,7 +70,6 @@ void jeuIAvIA_improved()
     {
         ++tour;
         int indice_coup = MCTS_improved(jeu, joueuractuel, tour); // l'IA joue choisit le meilleur coup
-        // int indice_coup = 5 ; // DEBUGGAGE
         //  Il faut maintenant jouer le coup
         jouer_coup(jeu, joueuractuel, indice_coup);
         printf("IA %d, tour %d ↓\n", joueuractuel, tour);
