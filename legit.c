@@ -255,18 +255,25 @@ int legit_direction(jeu_t *jeu, int indice_coup, int joueur, int tour)
         return 1; // le bobail doit bouger
     }
 
-    // Check si le déplcament du bobail est valide
-    if (abs_bobail + i_shift_bobail >= 0 && abs_bobail + i_shift_bobail <= 4 && ord_bobail + j_shift_bobail >= 0 && ord_bobail + j_shift_bobail <= 4)
-    { // si le bobail reste dans la grille
-        if (jeu->grille[abs_bobail + i_shift_bobail][ord_bobail + j_shift_bobail] != 0)
-        {
-            return 1; // si le bobail va dans une case occupée
+    if (direction_bobail != 8)
+    { // Quand le bobail ne bouge pas, il ne faut pas vérifier son déplacement !
+
+        // Check si le déplcament du bobail est valide
+        if (abs_bobail + i_shift_bobail >= 0 && abs_bobail + i_shift_bobail <= 4 && ord_bobail + j_shift_bobail >= 0 && ord_bobail + j_shift_bobail <= 4)
+        { // si le bobail reste dans la grille
+            if (jeu->grille[abs_bobail + i_shift_bobail][ord_bobail + j_shift_bobail] != 0)
+            {
+                return 1; // si le bobail va dans une case occupée
+            }
+        }
+        else
+        { // le bobail est sorti de la grille
+            return 1;
         }
     }
-    else
-    { // le bobail est sorti de la grille
-        return 1;
-    }
+    // On enregistre les nouvelles positions du bobail
+    int abs_bobail_new = abs_bobail + i_shift_bobail;
+    int ord_bobail_new = ord_bobail + j_shift_bobail;
 
     ////////////////////////
     // CHECK MOVE DU PION //
@@ -323,9 +330,9 @@ int legit_direction(jeu_t *jeu, int indice_coup, int joueur, int tour)
     // Check si le déplcament du pion est valide
     if (abs_pion + i_shift_pion >= 0 && abs_pion + i_shift_pion <= 4 && ord_pion + j_shift_pion >= 0 && ord_pion + j_shift_pion <= 4)
     { // si le pion reste dans la grille
-        if (jeu->grille[abs_pion + i_shift_pion][ord_pion + j_shift_pion] != 0)
+        if (jeu->grille[abs_pion + i_shift_pion][ord_pion + j_shift_pion] == 1 || jeu->grille[abs_pion + i_shift_pion][ord_pion + j_shift_pion] == 2 || (abs_pion + i_shift_pion == abs_bobail_new && ord_pion + j_shift_pion == ord_bobail_new))
         {
-            return 1; // si le pion va dans une case occupée
+            return 1; // si le pion va dans une case occupée par un autre pion ou par la nouvelle position du bobail
         }
     }
     else
