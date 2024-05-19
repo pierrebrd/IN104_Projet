@@ -101,15 +101,17 @@ int jeuIAvIA_comparaison(int joueurIAclassique)
         int indice_coup;
         if (joueuractuel == joueurIAclassique)
         {
+            printf("IA classique ↓\n");
             indice_coup = MCTS(jeu, joueuractuel, tour, 1000000); // l'IA joue choisit le meilleur coup avec l'algorithme classique
         }
         else
         {
+            printf("IA améliorée ↓\n");
             indice_coup = MCTS_improved(jeu, joueuractuel, tour); // l'IA joue choisit le meilleur coup avec l'algorithme récursif
         }
         //  Il faut maintenant jouer le coup
         jouer_coup(jeu, joueuractuel, indice_coup);
-        printf("IA %d, tour %d ↓\n", joueuractuel, tour);
+        printf("IA %d, tour %d ,coup %d↓\n", joueuractuel, tour, indice_coup);
         afficher(jeu); // on affiche la grille
 
         joueuractuel = 1 + joueuractuel % 2;
