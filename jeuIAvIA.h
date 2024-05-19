@@ -8,13 +8,13 @@
 #include "initialisation.h"
 #include "victoire.h"
 
-void jeuIAvIA_aleatoire();
+int jeuIAvIA_aleatoire();
 /* permet  de regarder deux ordinateurs jouer, qui jouent des coups complètement aléatoires */
 
-void jeuIAvIA();
+int jeuIAvIA();
 /* permet  de regarder deux ordinateurs jouer intelligement, en utilisant l'agorithme MCTS classique */
 
-void jeuIAvIA_improved();
+int jeuIAvIA_improved();
 /* permet  de regarder deux ordinateurs jouer encore plus intelligement, avec l'algorithme MCTS que nous avons modifié */
 
 int jeuIAvIA_comparaison(int joueurIAclassique);

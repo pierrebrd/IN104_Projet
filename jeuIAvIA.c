@@ -13,7 +13,7 @@
 #include "hasard.h"
 #include "IA.h"
 
-void jeuIAvIA_aleatoire()
+int jeuIAvIA_aleatoire()
 {
     srand(time(NULL)); // initialisation du random
     jeu_t *jeu = initialisation();
@@ -33,9 +33,10 @@ void jeuIAvIA_aleatoire()
     }
 
     printf("L'IA %d a gagné en %d tours !\n\n\n", victoire(jeu, joueuractuel), tour);
+    return (victoire(jeu, joueuractuel));
 }
 
-void jeuIAvIA()
+int jeuIAvIA()
 {
     srand(time(NULL)); // initialisation du random
     jeu_t *jeu = initialisation();
@@ -56,9 +57,10 @@ void jeuIAvIA()
     }
 
     printf("L'IA %d a gagné en %d tours !\n\n\n", victoire(jeu, joueuractuel), tour);
+    return (victoire(jeu, joueuractuel));
 }
 
-void jeuIAvIA_improved()
+int jeuIAvIA_improved()
 {
     srand(time(NULL)); // initialisation du random
     jeu_t *jeu = initialisation();
@@ -79,6 +81,7 @@ void jeuIAvIA_improved()
     }
 
     printf("L'IA %d a gagné en %d tours !\n\n\n", victoire(jeu, joueuractuel), tour);
+    return (victoire(jeu, joueuractuel));
 }
 
 int jeuIAvIA_comparaison(int joueurIAclassique)
