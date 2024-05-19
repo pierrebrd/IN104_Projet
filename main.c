@@ -27,20 +27,20 @@ int main()
         jeu1v1();
         break;
     case 2: // 1vIA, on chosisit le niveau de difficulté
-        printf("Choisissez le niveau de difficulté de l'IA :\n0 : l'IA joue complétement alétoirement\n1 : L'IA utilise un algorithme MCTS classique pour trouver le meilleur coup\n2 : L'IA utilise MCTS avec récursivité pour jouer plus intelligement\nVotre choix : ");
+        printf("Choisissez le niveau de difficulté de l'IA :\n1 : l'IA joue complétement alétoirement\n2 : L'IA utilise un algorithme MCTS classique pour trouver le meilleur coup\n3 : L'IA utilise MCTS avec récursivité pour jouer plus intelligement\nVotre choix : ");
         int anticipation = 0;
         // Pour l'instant, l'anticipation est au maximum de 2
         scanf("%d", &anticipation);
         printf("\n");
         switch (anticipation)
         {
-        case 0: // aléatoire
+        case 1: // aléatoire
             jeu1vIA_aleatoire();
             break;
-        case 1: // MCTS classique
+        case 2: // MCTS classique
             jeu1vIA();
             break;
-        case 2: // MCTS amélioré
+        case 3: // MCTS amélioré
             jeu1vIA_improved();
             break;
 
@@ -50,19 +50,19 @@ int main()
         }
         break;
     case 3: // IA contre IA
-        printf("Choisissez le niveau de difficulté de l'IA :\n0: l'IA joue complétement alétoirement\n1 : L'IA utilise un algorithme MCTS classique pour trouver le meilleur coup\n2 : L'IA utilise MCTS avec récursivité pour jouer plus intelligement\nVotre choix : ");
+        printf("Choisissez le niveau de difficulté de l'IA :\n1: l'IA joue complétement alétoirement\n2 : L'IA utilise un algorithme MCTS classique pour trouver le meilleur coup\n3 : L'IA utilise MCTS avec récursivité pour jouer plus intelligement\nVotre choix : ");
         // Pour l'instant, l'anticipation est au maximum de 2
         scanf("%d", &anticipation);
         printf("\n");
         switch (anticipation)
         {
-        case 0: // aléatoire
+        case 1: // aléatoire
             jeuIAvIA_aleatoire();
             break;
-        case 1: // MCTS classique
+        case 2: // MCTS classique
             jeuIAvIA();
             break;
-        case 2: // MCTS amélioré
+        case 3: // MCTS amélioré
             jeuIAvIA_improved();
             break;
 

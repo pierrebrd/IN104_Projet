@@ -217,7 +217,6 @@ int MCTS_improved(jeu_t *jeu, int joueur, int tour)
             ratio[indice_coup] = -1; // le coup est illégal ! On mets -1 car si on met 0, on risque de le choisir par erreur si tous les coups légaux sont perdants donc auront un ratio de 0 également
         }
     }
-    printf("ratio\n");
     // On chosit le coup avec le meilleur ratio
     int ind_max = 0;
     double max = 0;
