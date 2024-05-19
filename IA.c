@@ -31,7 +31,7 @@ int MCTS(jeu_t *jeu, int joueur, int tour, int nbr_simulations)
 {
     if (victoire(jeu, joueur) != 0)
     {
-        printf("jeu gagné\n");
+        // printf("jeu gagné\n");
         return 404; // le jeu est déja gagné, on renvoie une erreur
     }
     // On cherche la meilleure des actions possibles pour joueur
