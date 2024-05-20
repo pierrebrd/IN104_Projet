@@ -1,24 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
-
 #include "hasard.h"
-#include "legit.h"
-#include "victoire.h"
-#include "initialisation.h"
-
-typedef enum
-{
-    NORD,
-    SUD,
-    OUEST,
-    EST,
-    NORDOUEST,
-    NORDEST,
-    SUDOUEST,
-    SUDEST,
-    RIEN
-} direction_t;
 
 int coup_hasard(jeu_t *jeu, int joueur, int tour)
 {

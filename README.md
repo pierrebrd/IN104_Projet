@@ -2,7 +2,18 @@
 
 ## MODE D'EMPLOI
 
-Le jeu peut être compilé en éxécutant `make` puis `./main.x` pour lancer le jeu
+Le jeu peut être compilé en éxécutant :
+```
+make
+```
+Puis, pour lancer le jeu :
+```
+./main.x
+```
+On choisit ensuite le mode de jeu et le type d'intelligence artificielle
+
+
+
 
 On peut aussi éxécuter des fichiers test spécifiques à des fins de développement, par exemple :
 
@@ -52,3 +63,5 @@ Nous nous intéressons à la méthode de Monte-Carlo Tree Search (MCTS). Il s'ag
 Dans la version classique, on explore tous les coups valides du joueur dont c'est le tour de jouer. A partir de ce coup valide, les deux joueurs joue aleatoirement jusqu'à la fin du jeu. Si la partie mène à la victoire, on lui donne plus de valeur. Finalement, après plusieurs centaines de milliers d'explorations, on choisit le coup initial qui donne les meilleurs résultats.
 
 
+
+Pour comparer les 2 IAs, on peut compiler `make test_jeuIAvIA_comparaison.x` et éxécuter `./test_jeuIAvIA_comparaison.x j n` où la valeur de j =1  ou 2 indique si l'IA classique joue en joueur 1 ou 2, et n est le nombre de parties simulées

@@ -24,9 +24,8 @@ int main(int argc, char **argv)
         {
             S2++;
         }
-        printf("En %d parties, L'IA classique a gagné %d fois (ratio de %f), l'IA améliorée a gagné %d fois (ratio de %f\n", i, S1, (double)S1 / i, S2, (double)S2 / i);
+        printf("En %d parties, L'IA classique a gagné %d fois (ratio de %f), l'IA améliorée a gagné %d fois (ratio de %f)\n", i, S1, (double)S1 / i, S2, (double)S2 / i);
     }
-    printf("En %d parties, L'IA classique a gagné %d fois (ratio de %f), l'IA améliorée a gagné %d fois (ratio de %f\n", n, S1, (double)S1 / n, S2, (double)S2 / n);
 
     return 0;
 }

@@ -1,19 +1,6 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
-#include <unistd.h> //pour utiliser sleep
-#include <time.h>   //pour initialiser le random
-
 #include "jeuIAvIA.h"
-#include "deplacement.h"
-#include "affichage.h"
-#include "legit.h"
-#include "initialisation.h"
-#include "victoire.h"
-#include "hasard.h"
-#include "IA.h"
 
-void jeuIAvIA_aleatoire()
+int jeuIAvIA_aleatoire()
 {
     srand(time(NULL)); // initialisation du random
     jeu_t *jeu = initialisation();
@@ -33,9 +20,10 @@ void jeuIAvIA_aleatoire()
     }
 
     printf("L'IA %d a gagné en %d tours !\n\n\n", victoire(jeu, joueuractuel), tour);
+    return (victoire(jeu, joueuractuel));
 }
 
-void jeuIAvIA()
+int jeuIAvIA()
 {
     srand(time(NULL)); // initialisation du random
     jeu_t *jeu = initialisation();
@@ -56,9 +44,10 @@ void jeuIAvIA()
     }
 
     printf("L'IA %d a gagné en %d tours !\n\n\n", victoire(jeu, joueuractuel), tour);
+    return (victoire(jeu, joueuractuel));
 }
 
-void jeuIAvIA_improved()
+int jeuIAvIA_improved()
 {
     srand(time(NULL)); // initialisation du random
     jeu_t *jeu = initialisation();
@@ -68,6 +57,11 @@ void jeuIAvIA_improved()
     afficher(jeu);
     while (victoire(jeu, joueuractuel) == 0) // tant qu'aucun joueur n'a gagné
     {
+        if (tour > 100)
+        {
+            printf("La partie n'est pas finie au bout de 100 tours, on arrête la partie\n");
+            return 0;
+        }
         ++tour;
         int indice_coup = MCTS_improved(jeu, joueuractuel, tour); // l'IA joue choisit le meilleur coup
         //  Il faut maintenant jouer le coup
@@ -79,6 +73,7 @@ void jeuIAvIA_improved()
     }
 
     printf("L'IA %d a gagné en %d tours !\n\n\n", victoire(jeu, joueuractuel), tour);
+    return (victoire(jeu, joueuractuel));
 }
 
 int jeuIAvIA_comparaison(int joueurIAclassique)
@@ -101,15 +96,17 @@ int jeuIAvIA_comparaison(int joueurIAclassique)
         int indice_coup;
         if (joueuractuel == joueurIAclassique)
         {
+            printf("IA classique ↓\n");
             indice_coup = MCTS(jeu, joueuractuel, tour, 1000000); // l'IA joue choisit le meilleur coup avec l'algorithme classique
         }
         else
         {
+            printf("IA améliorée ↓\n");
             indice_coup = MCTS_improved(jeu, joueuractuel, tour); // l'IA joue choisit le meilleur coup avec l'algorithme récursif
         }
         //  Il faut maintenant jouer le coup
         jouer_coup(jeu, joueuractuel, indice_coup);
-        printf("IA %d, tour %d ↓\n", joueuractuel, tour);
+        printf("IA %d, tour %d ,coup %d↓\n", joueuractuel, tour, indice_coup);
         afficher(jeu); // on affiche la grille
 
         joueuractuel = 1 + joueuractuel % 2;

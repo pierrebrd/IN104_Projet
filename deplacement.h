@@ -5,6 +5,7 @@
 
 #include "legit.h"
 #include "initialisation.h"
+#include "victoire.h"
 
 void changement_position(jeu_t *jeu, int *pos, int type_pion);
 /*Change la position d'un pion dans x_pions et y_pions à partir de son ancienne et sa nouvelle position, représentées dans la liste de 4 entiers pos

@@ -6,12 +6,13 @@
 #include "hasard.h"
 #include "victoire.h"
 #include "legit.h"
+#include "deplacement.h"
 
 int explore_aleatoire(jeu_t *jeu_provisoire, int joueur, int tour);
 /* effectue plusieurs coups aléatoire jusqu'à arriver à la fin du jeu, renvoie 1 ou 2 en fonction du gagnant et 0 si le jeu est bloqué */
 
 int MCTS(jeu_t *jeu, int joueur, int tour, int nbr_simulations);
-/* Applique l'algorithme Monte-Carlo Tree Search pour choisir un coup 
+/* Applique l'algorithme Monte-Carlo Tree Search pour choisir un coup
 
 ARGUMENTS
 jeu_t *jeu : struct qui contient une matrice int** correspondant à l'occupation de chaque case du plateau de jeu (0 si vide, 1 si pion du joueur 1, 2 si pion du joueur 2, 3 si bobail) ; une liste x_pions contenant les absisses des positions des pions ; une liste int* y_pions contenant les ordonnées des positions des pion (indices 0 à 4 pour joueur 1, 5 à 9 pour joueur 2, 10 pour bobail)

@@ -1,11 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
-
-#include "initialisation.h"
 #include "IA.h"
-#include "deplacement.h"
-#include "legit.h"
 
 int explore_aleatoire(jeu_t *jeu_provisoire, int joueur, int tour)
 {
@@ -77,8 +70,8 @@ int MCTS(jeu_t *jeu, int joueur, int tour, int nbr_simulations)
         }
     }
 
-    int ind_max = 0;
-    double max = 0;
+    int ind_max = -1;
+    double max = -1;
     for (int i = 0; i < 360; i++)
     {
         if (ratio[i] >= max)
@@ -189,27 +182,36 @@ int MCTS_improved(jeu_t *jeu, int joueur, int tour)
             jouer_coup(jeu_provisoire, joueur, indice_coup);
             // printf("On cherche le coup de l'adversaire\n");
             int coup_adversaire = MCTS(jeu_provisoire, joueur % 2 + 1, tour + 1, 10000);
-            if (coup_adversaire != 404) // si la partie était déja gagné, on ne joue pas
+            if (coup_adversaire != 404) // indice_coup n'est pas gagnant, donc l'adversaire joue et on cherche le meilleur coup ensuite
             {
-                jouer_coup(jeu_provisoire, joueur % 2 + 1, coup_adversaire);
-            }
-            // peut-être que la boucle qui suit pourrait se faire directement en faisant appel à MCTS, ce qui permettrait de génaraliser à d'autres niveaux de récursivité
-            // update : non en fait pas du tout je dis n'importe quoi
-            // printf("On explore notre coup\n");
-            int nb_explorations = 10000;
-            jeu_t *jeu_provisoire2 = initialisation();
-            for (int i = 0; i < nb_explorations; i++)
-            {
-                copy_jeu(jeu_provisoire, jeu_provisoire2);
-                int gagnant = explore_aleatoire(jeu_provisoire2, joueur, tour + 2);
-
-                if (gagnant == joueur)
+                jouer_coup(jeu_provisoire, joueur % 2 + 1, coup_adversaire); // l'adversaire joue
+                int nb_explorations = 10000;
+                jeu_t *jeu_provisoire2 = initialisation();
+                for (int i = 0; i < nb_explorations; i++)
                 {
-                    nb_succes[indice_coup]++; // On a gagné !
+                    copy_jeu(jeu_provisoire, jeu_provisoire2);
+                    int gagnant = explore_aleatoire(jeu_provisoire2, joueur, tour + 2);
+
+                    if (gagnant == joueur)
+                    {
+                        nb_succes[indice_coup]++; // On a gagné !
+                    }
+                }
+
+                ratio[indice_coup] = (double)nb_succes[indice_coup] / nb_explorations;
+            }
+            else if (coup_adversaire == 404)
+            {
+                // indice_coup est pour l'un des deux joueurs ! on vérifie si c'est gagnant nous ou l'adversaire, et on met a jour le ratio
+                if (victoire(jeu_provisoire, joueur % 2 + 1) == joueur)
+                {
+                    ratio[indice_coup] = 1;
+                }
+                else if (victoire(jeu_provisoire, joueur % 2 + 1) == joueur % 2 + 1)
+                {
+                    ratio[indice_coup] = 0;
                 }
             }
-
-            ratio[indice_coup] = (double)nb_succes[indice_coup] / nb_explorations;
         }
 
         else
@@ -218,8 +220,8 @@ int MCTS_improved(jeu_t *jeu, int joueur, int tour)
         }
     }
     // On chosit le coup avec le meilleur ratio
-    int ind_max = 0;
-    double max = 0;
+    int ind_max = -1;
+    double max = -1;
     for (int i = 0; i < 360; i++)
     {
         // printf("ratio coup %d : %f\n", i, ratio[i]);

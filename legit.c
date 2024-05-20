@@ -1,23 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
-
-#include "deplacement.h"
 #include "legit.h"
-#include "initialisation.h"
-
-typedef enum
-{
-    NORD,
-    SUD,
-    OUEST,
-    EST,
-    NORDOUEST,
-    NORDEST,
-    SUDOUEST,
-    SUDEST,
-    RIEN
-} direction_t;
 
 int legit(jeu_t *jeu, int ia, int ja, int ib, int jb, int type_pion)
 {

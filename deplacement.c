@@ -1,24 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
-#include <string.h>
-
-#include "legit.h"
-#include "initialisation.h"
-#include "victoire.h"
-
-typedef enum
-{
-    NORD,
-    SUD,
-    OUEST,
-    EST,
-    NORDOUEST,
-    NORDEST,
-    SUDOUEST,
-    SUDEST,
-    RIEN
-} direction_t;
+#include "deplacement.h"
 
 void changement_position(jeu_t *jeu, int *pos, int type_pion)
 
@@ -234,6 +214,11 @@ int coup(jeu_t *jeu, int type_pion)
 
 void jouer_coup(jeu_t *jeu, int joueur, int indice_coup)
 {
+    if (indice_coup < 0 || indice_coup > 359)
+    {
+        printf("Coup %d invalide\n", indice_coup);
+        return;
+    }
     int direction_bobail = indice_coup / 40;
     int nb_pion = (indice_coup % 40) / 8 + 5 * (joueur - 1);
     int direction_pion = indice_coup % 8;
