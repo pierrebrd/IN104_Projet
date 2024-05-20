@@ -99,7 +99,7 @@ int MCTS_improved(jeu_t *jeu, int joueur, int tour, int nb_explorations)
             copy_jeu(jeu, jeu_provisoire);
             jouer_coup(jeu_provisoire, joueur, indice_coup);
             // printf("On cherche le coup de l'adversaire\n");
-            int coup_adversaire = MCTS(jeu_provisoire, joueur % 2 + 1, tour + 1, 10 * nb_explorations); // le 10*nb_explorations est arbitraire
+            int coup_adversaire = MCTS(jeu_provisoire, joueur % 2 + 1, tour + 1, nb_explorations);
             if (coup_adversaire != 404)
             {
                 // indice_coup n'est pas gagnant, donc l'adversaire joue et on cherche le meilleur coup ensuite
