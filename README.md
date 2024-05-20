@@ -25,7 +25,7 @@ Convention de l'indexation de la grille :
 lignes i croissant de haut en bas
 colonnes j croissant de gauche à droite
 
-Les listes `int* x_pions` et `int* y_pions` enregistre les positions des pions : les 5 premiers éléments sont les pions du joueur 1, les 5 suivants ceux du joueur 2, et le dixième élément correspond au bobail.
+Les listes `int* x_pions` et `int* y_pions` enregistre les positions des pions : les 5 premiers éléments sont les pions du joueur 1, les 5 suivants ceux du joueur 2, et le onzième élément correspond au bobail.
   
 L'avantage de cette double représentation de l'état du jeu qu'on profite à la fois de la simplicité de la manipulation de la grille et de la liste des positions des pions, ce qui évite de rechercher les pions dans la grille quand on en a besoin (pour l'IA notamment).
 
@@ -47,4 +47,8 @@ Les fonctions liées au déplacement se situent dans deplacements.h
 
 ## IA
 
-Nous nous intéressons à la méthode de Monte-Carlo Tree Search (MCTS). Dans la version classique, on explore tous les coups valides du joueur dont c'est le tour de jouer. A partir de ce coup valide, les deux joeurs joue complétement aleatoirement jusqu'à la fin du jeu, et on regarde le résultat. Finalement, après plusieurs centaines de milliers d'explorations, on choisit le coup initial qui donne les meilleurs résultats.
+Nous nous intéressons à la méthode de Monte-Carlo Tree Search (MCTS). Il s'agit d'un algorithme qui explore l'arbre des possibles en associant des statistiques 
+
+Dans la version classique, on explore tous les coups valides du joueur dont c'est le tour de jouer. A partir de ce coup valide, les deux joueurs joue aleatoirement jusqu'à la fin du jeu. Si la partie mène à la victoire, on lui donne plus de valeur. Finalement, après plusieurs centaines de milliers d'explorations, on choisit le coup initial qui donne les meilleurs résultats.
+
+
