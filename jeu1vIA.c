@@ -163,7 +163,7 @@ void jeu1vIA_improved()
         {
             // COUP DE L'IA
             printf("\n\n\n");
-            int indice_coup = MCTS_improved(jeu, joueuractuel, tour);
+            int indice_coup = MCTS_improved(jeu, joueuractuel, tour, 10000);
             jouer_coup(jeu, joueuractuel, indice_coup);
             printf("Coup de l'IA ↓\n");
             afficher(jeu);

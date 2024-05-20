@@ -29,12 +29,7 @@ nb_pion = (indice_coup % 40) / 8 + 5 * (joueur - 1);
 direction_pion = indice_coup % 8;
 */
 
-int MCTS_improved_marche_pas(jeu_t *jeu, int joueur, int tour, int anticipation);
-/* Renvoie un coup à jouer basé sur la méthode de MCTS modifiée
-L'IA évite maintenant de faire des coups qui mènent à une défaite rapide
-Le coup est repéré par la méthode d'indiciation expliquée A TEL ENDROIT */
-
-int MCTS_improved(jeu_t *jeu, int joueur, int tour);
+int MCTS_improved(jeu_t *jeu, int joueur, int tour, int nbr_simulations);
 /* Renvoie un coup à jouer basé sur la méthode de MCTS que nous avons modifié. Lorsqu'on simule les parties pour déterminer le meilleur coup possible, le premier coup de l'adversaire est lui-meme déterminé par MCTS et non pas randomisé. Cela permet à l'IA d'éviter de faire des coups qui mènent à une défaite rapide
 
 ARGUMENTS

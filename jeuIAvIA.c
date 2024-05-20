@@ -63,7 +63,7 @@ int jeuIAvIA_improved()
             return 0;
         }
         ++tour;
-        int indice_coup = MCTS_improved(jeu, joueuractuel, tour); // l'IA joue choisit le meilleur coup
+        int indice_coup = MCTS_improved(jeu, joueuractuel, tour, 10000); // l'IA joue choisit le meilleur coup
         //  Il faut maintenant jouer le coup
         jouer_coup(jeu, joueuractuel, indice_coup);
         printf("IA %d, tour %d ↓\n", joueuractuel, tour);
@@ -102,7 +102,7 @@ int jeuIAvIA_comparaison(int joueurIAclassique)
         else
         {
             printf("IA améliorée ↓\n");
-            indice_coup = MCTS_improved(jeu, joueuractuel, tour); // l'IA joue choisit le meilleur coup avec l'algorithme récursif
+            indice_coup = MCTS_improved(jeu, joueuractuel, tour, 10000); // l'IA joue choisit le meilleur coup avec l'algorithme récursif
         }
         //  Il faut maintenant jouer le coup
         jouer_coup(jeu, joueuractuel, indice_coup);
