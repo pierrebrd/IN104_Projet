@@ -5,3 +5,8 @@
 *.out
 *.txt
 *.json
+Rapport IN104/main.aux
+Rapport IN104/main.fdb_latexmk
+Rapport IN104/main.log
+Rapport IN104/main.fls
+Rapport IN104/main.synctex.gz
